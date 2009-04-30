@@ -1,0 +1,71 @@
+AC_INIT(diction.c)
+AC_CONFIG_HEADER(config.h)
+AC_CANONICAL_HOST
+VERSION=1.11
+UPDATED='August 30th, 2007'
+
+case $host in
+  hppa1.1-hp-hpux11.00)
+    EXTRA_CFLAGS='+O2 +Onolimit -D_XOPEN_SOURCE_EXTENDED '
+    EXTRA_LDFLAGS='-z '
+    EXTRA_GCFLAGS='-D_XOPEN_SOURCE_EXTENDED '
+    EXTRA_GLDFLAGS='-Wl,-z '
+  ;;
+esac
+
+AC_PROG_CC
+if test "$GCC" = yes
+then
+  CFLAGS="${CFLAGS} ${EXTRA_GCFLAGS}-pipe -Wno-unused -Wshadow -Wbad-function-cast -Wmissing-prototypes -Wstrict-prototypes -Wcast-align -Wcast-qual -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations -Wnested-externs -Wundef -pedantic -fno-common"
+  LDFLAGS="${LDFLAGS} ${EXTRA_GLDFLAGS}-g"
+else
+  CFLAGS="${CFLAGS} ${EXTRA_CFLAGS}"
+  LDFLAGS="${LDFLAGS} ${EXTRA_LDFLAGS}"
+fi
+
+AC_ARG_WITH(valgrind,
+  [  --with-valgrind         run regression tests with valgrind],
+  [VALGRIND="valgrind"
+  AC_SUBST(VALGRIND)]
+)
+
+AC_PROG_INSTALL
+AC_CHECK_FUNCS(strerror)
+AC_SEARCH_LIBS(regcomp, [regex pcre])
+
+AC_MSG_CHECKING(for broken realloc)
+AC_TRY_RUN([#include <sys/types.h>
+#include <signal.h>
+#include <stdlib.h>
+
+static void sigsegv(int n)
+{
+  exit(1);
+}
+
+int main(void)
+{
+  signal(SIGSEGV,sigsegv);
+  realloc((void*)0,1);
+  exit(0);
+}
+],AC_MSG_RESULT(no),AC_DEFINE(BROKEN_REALLOC) AC_MSG_RESULT(yes))
+
+USE_NLS=no
+AC_CHECK_PROG(MSGFMT,msgfmt,yes,no)
+if test "$MSGFMT" = yes
+then
+  AC_CHECK_HEADERS(libintl.h,[LIBINTL=yes])
+  if test "$LIBINTL" = yes
+  then
+    AC_SEARCH_LIBS(gettext,intl,[AC_DEFINE(HAVE_GETTEXT) USE_NLS=yes])
+  fi
+fi
+
+AC_DEFINE_UNQUOTED(VERSION,"$VERSION")
+AC_SUBST(VERSION)
+AC_SUBST(UPDATED)
+eval DATADIR=$datadir
+AC_SUBST(DATADIR)
+AC_SUBST(USE_NLS)
+AC_OUTPUT(Makefile diction.1 diction.texi diction.spec style.1 test/rundiction)

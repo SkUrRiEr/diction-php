@@ -1,0 +1,28 @@
+#!/bin/sh
+
+echo -n $0: 'Suffix matching... '
+
+cat >test.in <<'eof'
+It is not wise to use foowise.
+eof
+
+cat >test.db <<eof
+wise	(avoid words that end in -wise)
+eof
+
+cat >test.ref <<eof
+test.in:1: It is not wise to use foo[wise].
+
+1 phrase in 1 sentence found.
+eof
+
+sh ./test/rundiction -f test.db test.in >test.data
+
+if cmp test.ref test.data
+then
+  rm -f test.*
+  echo passed
+else
+  echo failed
+  exit 1
+fi

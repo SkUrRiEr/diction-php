@@ -1,0 +1,384 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2007-08-09 15:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: diction.c:78 diction.c:402
+#, c-format
+msgid "diction: Opening `%s' failed (%s).\n"
+msgstr ""
+
+#: diction.c:93 diction.c:111 diction.c:129
+msgid "diction: out of memory.\n"
+msgstr ""
+
+#: diction.c:121
+#, c-format
+msgid "diction: Compiling regular expression `%s' failed (%s).\n"
+msgstr ""
+
+#: diction.c:260
+msgid "Double word."
+msgstr ""
+
+#: diction.c:283
+msgid ""
+"Usage: diction [-b] [-d] [-f file [-n|-L language]] [-q] [file ...]\n"
+"       diction [--beginner] [--ignore-double-words]\n"
+"               [--file file [--no-default-file|--language]] [--quiet] "
+"[file ...]\n"
+"       diction --version\n"
+msgstr ""
+
+#: diction.c:325
+#, c-format
+msgid "diction: Invalid string `..' in default phrase language `%s'.\n"
+msgstr ""
+
+#: diction.c:369
+msgid "Try `diction -h' or `diction --help' for more information.\n"
+msgstr ""
+
+#: diction.c:376
+msgid ""
+"Print wordy and commonly misused phrases in sentences.\n"
+"\n"
+msgstr ""
+
+#: diction.c:377
+msgid ""
+"-b, --beginner             complain about typical mistakes of beginners\n"
+msgstr ""
+
+#: diction.c:378
+msgid "-d, --ignore-double-words  do not complain about double words\n"
+msgstr ""
+
+#: diction.c:379
+msgid "-s, --suggest              suggest better wording\n"
+msgstr ""
+
+#: diction.c:380
+msgid "-f, --file                 also read the specified database\n"
+msgstr ""
+
+#: diction.c:381
+msgid "-n, --no-default-file      do not read the default phrase file\n"
+msgstr ""
+
+#: diction.c:382
+msgid "-L, --language             set document language\n"
+msgstr ""
+
+#: diction.c:383
+msgid "-q, --quiet                do not print input file name\n"
+msgstr ""
+
+#: diction.c:384
+msgid "-h, --help                 print this message\n"
+msgstr ""
+
+#: diction.c:385
+msgid "    --version              print the version\n"
+msgstr ""
+
+#: diction.c:387 style.c:1102
+msgid "Report bugs to <michael@moria.de>.\n"
+msgstr ""
+
+#: diction.c:413 style.c:1122
+msgid "No sentences found.\n"
+msgstr ""
+
+#: diction.c:417
+msgid "No phrases "
+msgstr ""
+
+#: diction.c:418
+msgid "1 phrase "
+msgstr ""
+
+#: diction.c:419
+#, c-format
+msgid "%d phrases "
+msgstr ""
+
+#: diction.c:420
+msgid "in 1 sentence found.\n"
+msgstr ""
+
+#: diction.c:421
+#, c-format
+msgid "in %d sentences found.\n"
+msgstr ""
+
+#: getopt.c:571 getopt.c:587
+#, c-format
+msgid "%s: option `%s' is ambiguous\n"
+msgstr ""
+
+#: getopt.c:620 getopt.c:624
+#, c-format
+msgid "%s: option `--%s' doesn't allow an argument\n"
+msgstr ""
+
+#: getopt.c:633 getopt.c:638
+#, c-format
+msgid "%s: option `%c%s' doesn't allow an argument\n"
+msgstr ""
+
+#: getopt.c:681 getopt.c:700 getopt.c:1016 getopt.c:1035
+#, c-format
+msgid "%s: option `%s' requires an argument\n"
+msgstr ""
+
+#: getopt.c:738 getopt.c:741
+#, c-format
+msgid "%s: unrecognized option `--%s'\n"
+msgstr ""
+
+#: getopt.c:749 getopt.c:752
+#, c-format
+msgid "%s: unrecognized option `%c%s'\n"
+msgstr ""
+
+#: getopt.c:804 getopt.c:807
+#, c-format
+msgid "%s: illegal option -- %c\n"
+msgstr ""
+
+#: getopt.c:813 getopt.c:816
+#, c-format
+msgid "%s: invalid option -- %c\n"
+msgstr ""
+
+#: getopt.c:868 getopt.c:884 getopt.c:1088 getopt.c:1106
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr ""
+
+#: getopt.c:937 getopt.c:953
+#, c-format
+msgid "%s: option `-W %s' is ambiguous\n"
+msgstr ""
+
+#: getopt.c:977 getopt.c:995
+#, c-format
+msgid "%s: option `-W %s' doesn't allow an argument\n"
+msgstr ""
+
+#: sentence.c:203
+#, c-format
+msgid "%s: internal error, compiling a regular expression failed (%s).\n"
+msgstr ""
+
+#: sentence.c:240
+#, c-format
+msgid "%s: increasing sentence buffer failed: %s\n"
+msgstr ""
+
+#: style.c:72 style.c:86
+msgid "style: out of memory\n"
+msgstr ""
+
+#: style.c:988
+msgid ""
+"Usage: style [-L language] [-l length] [-r ari] [file ...]\n"
+"       style [--language language] [--print-long length] [--print-ari ari]\n"
+"             [file ...]\n"
+"       style --version\n"
+msgstr ""
+
+#: style.c:1046
+#, c-format
+msgid "style: Incorrect language option `%s'.\n"
+msgstr ""
+
+#: style.c:1082
+msgid "Try style -h|--help for more information.\n"
+msgstr ""
+
+#: style.c:1089
+msgid ""
+"Analyse surface characteristics of a document.\n"
+"\n"
+msgstr ""
+
+#: style.c:1090
+msgid ""
+"-L, --language          set the document language.\n"
+"-l, --print-long        print all sentences longer than <length> words\n"
+"-r, --print-ari         print all sentences with an ARI greater than than "
+"<ari>\n"
+"-p, --print-passive     print all sentences phrased in the passive voice\n"
+"-N, --print-nom         print all sentences containing nominalizations\n"
+"-n, --print-nom-passive print all sentences phrased in the passive voice or\n"
+"                        containing nominalizations\n"
+msgstr ""
+
+#: style.c:1098
+msgid ""
+"-h, --help              print this message\n"
+"    --version           print the version\n"
+msgstr ""
+
+#: style.c:1112
+#, c-format
+msgid "style: Opening `%s' failed (%s).\n"
+msgstr ""
+
+#: style.c:1131
+msgid "readability grades:\n"
+msgstr ""
+
+#: style.c:1136
+msgid "/100 (plain English)"
+msgstr ""
+
+#: style.c:1136
+msgid "/100"
+msgstr ""
+
+#: style.c:1141 style.c:1146
+msgid "below school year 5\n"
+msgstr ""
+
+#: style.c:1142
+msgid "higher than school year 10\n"
+msgstr ""
+
+#: style.c:1143 style.c:1148
+#, c-format
+msgid "school year %d\n"
+msgstr ""
+
+#: style.c:1145
+msgid "Lix"
+msgstr ""
+
+#: style.c:1147
+msgid "higher than school year 11\n"
+msgstr ""
+
+#: style.c:1149
+msgid "SMOG-Grading"
+msgstr ""
+
+#: style.c:1151
+msgid "sentence info:\n"
+msgstr ""
+
+#: style.c:1152
+#, c-format
+msgid "        %d characters\n"
+msgstr ""
+
+#: style.c:1153
+#, c-format
+msgid "        %d words, average length %.2f characters = %.2f syllables\n"
+msgstr ""
+
+#: style.c:1154
+#, c-format
+msgid "        %d sentences, average length %.1f words\n"
+msgstr ""
+
+#: style.c:1158
+#, c-format
+msgid "        %d%% (%d) short sentences (at most %d words)\n"
+msgstr ""
+
+#: style.c:1161
+#, c-format
+msgid "        %d%% (%d) long sentences (at least %d words)\n"
+msgstr ""
+
+#: style.c:1162
+#, c-format
+msgid "        %d paragraphs, average length %.1f sentences\n"
+msgstr ""
+
+#: style.c:1163
+#, c-format
+msgid "        %d%% (%d) questions\n"
+msgstr ""
+
+#: style.c:1164
+#, c-format
+msgid "        %d%% (%d) passive sentences\n"
+msgstr ""
+
+#: style.c:1165
+#, c-format
+msgid ""
+"        longest sent %d wds at sent %d; shortest sent %d wds at sent %d\n"
+msgstr ""
+
+#.
+#. Missing output:
+#.
+#. sentence types:
+#. simple 100% (1) complex   0% (0)
+#. compound   0% (0) compound-complex   0% (0)
+#. word usage:
+#. verb types as % of total verbs
+#. tobe 100% (1) aux   0% (0) inf   0% (0)
+#. passives as % of non-inf verbs   0% (0)
+#. types as % of total
+#. prep 0.0% (0) conj 0.0% (0) adv 0.0% (0)
+#. noun 25.0% (1) adj 25.0% (1) pron 25.0% (1)
+#. nominalizations   0 % (0)
+#.
+#: style.c:1182
+msgid "word usage:\n"
+msgstr ""
+
+#: style.c:1183
+msgid "        verb types:\n"
+msgstr ""
+
+#: style.c:1184
+#, c-format
+msgid "        to be (%d) auxiliary (%d) \n"
+msgstr ""
+
+#: style.c:1185
+#, c-format
+msgid "        types as %% of total:\n"
+msgstr ""
+
+#: style.c:1186
+msgid ""
+"        conjunctions %1.f% (%d) pronouns %1.f% (%d) prepositions %1.f% (%d)\n"
+msgstr ""
+
+#: style.c:1191
+msgid "        nominalizations %1.f% (%d)\n"
+msgstr ""
+
+#: style.c:1194
+msgid "sentence beginnings:\n"
+msgstr ""
+
+#: style.c:1195
+#, c-format
+msgid "        pronoun (%d) interrogative pronoun (%d) article (%d)\n"
+msgstr ""
+
+#: style.c:1196
+#, c-format
+msgid ""
+"        subordinating conjunction (%d) conjunction (%d) preposition (%d)\n"
+msgstr ""
