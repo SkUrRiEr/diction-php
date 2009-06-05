@@ -27,8 +27,6 @@ with this program.  If not, write to the Free Software Foundation, Inc.,
 #undef  _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 2
 
-#include "config.h"
-
 #include <assert.h>
 #include <ctype.h>
 #include <errno.h>
@@ -44,8 +42,6 @@ with this program.  If not, write to the Free Software Foundation, Inc.,
 #include <stdlib.h>
 #include <string.h>
 
-#include "getopt.h"
-#include "misc.h"
 #include "sentence.h"
 /*}}}*/
 

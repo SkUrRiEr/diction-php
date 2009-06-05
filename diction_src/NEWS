@@ -1,6 +1,0 @@
-The following things have been changed compared to version 1.10:
-
-o  Bugfix in ellipsis processing
-o  Support for Dutch
-o  GPL 3.0
-o  Use autoconf 2.61

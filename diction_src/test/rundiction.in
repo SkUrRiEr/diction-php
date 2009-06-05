@@ -1,3 +1,0 @@
-#!/bin/sh
-
-@VALGRIND@ ./diction -f /dev/null -n "$@"

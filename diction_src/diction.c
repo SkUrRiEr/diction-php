@@ -21,7 +21,6 @@ with this program.  If not, write to the Free Software Foundation, Inc.,
 */
 /*}}}*/
 /* #includes */ /*{{{*/
-#include "config.h"
 
 #include <sys/types.h>
 #include <assert.h>
@@ -41,8 +40,6 @@ with this program.  If not, write to the Free Software Foundation, Inc.,
 #include <string.h>
 #include <unistd.h>
 
-#include "getopt.h"
-#include "misc.h"
 #include "sentence.h"
 /*}}}*/
 /* types */ /*{{{*/
@@ -327,15 +324,15 @@ int main(int argc, char *argv[]) /*{{{*/
     }
     else
     {
-      snprintf(defaultPhrases,sizeof(defaultPhrases),SHAREDIR "/diction/%s",e);
+      snprintf(defaultPhrases,sizeof(defaultPhrases), "/diction/%s",e);
       if (access(defaultPhrases,R_OK)!=0)
       {
         phraseLanguage[5]='\0';
-        snprintf(defaultPhrases,sizeof(defaultPhrases),SHAREDIR "/diction/%s",phraseLanguage);
+        snprintf(defaultPhrases,sizeof(defaultPhrases), "/diction/%s",phraseLanguage);
         if (access(defaultPhrases,R_OK)!=0)
         {
           phraseLanguage[2]='\0';
-          snprintf(defaultPhrases,sizeof(defaultPhrases),SHAREDIR "/diction/%s",phraseLanguage);
+          snprintf(defaultPhrases,sizeof(defaultPhrases), "/diction/%s",phraseLanguage);
           if (access(defaultPhrases,R_OK)!=0)
           {
             strcpy(phraseLanguage,"C");
@@ -347,7 +344,7 @@ int main(int argc, char *argv[]) /*{{{*/
   else strcpy(phraseLanguage,"C");
   /*}}}*/
   /* parse options */ /*{{{*/
-  strcpy(defaultPhrases,SHAREDIR "/diction/");
+  strcpy(defaultPhrases, "/diction/");
   while ((c=getopt_long(argc,argv,"bdsf:nL:qh",lopts,(int*)0))!=EOF) switch(c)
   {
     case 'b': beginner=1; break;
@@ -357,7 +354,7 @@ int main(int argc, char *argv[]) /*{{{*/
     case 'n': defaultPhrases[0]='\0'; break;
     case 'L': strncpy(phraseLanguage,optarg,sizeof(phraseLanguage)-1); phraseLanguage[sizeof(phraseLanguage)-1]='\0'; break;
     case 'q': quiet=1; break;
-    case 'v': printf("GNU diction " VERSION "\n"); exit(0);
+    case 'v': printf("GNU diction\n"); exit(0);
     case 'h': usage=2; break;
     default: usage=1; break;
   }

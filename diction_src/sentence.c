@@ -26,8 +26,6 @@ with this program.  If not, write to the Free Software Foundation, Inc.,
 #undef  _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 2
 
-#include "config.h"
-
 #include <sys/types.h>
 #include <assert.h>
 #include <ctype.h>
@@ -45,21 +43,10 @@ with this program.  If not, write to the Free Software Foundation, Inc.,
 #include <stdlib.h>
 #include <string.h>
 
-#include "misc.h"
 #include "sentence.h"
 /*}}}*/
 
-static const char *abbreviations_de[]= /*{{{*/
-{
-  "Dr",
-  "bzw",
-  "etc",
-  "sog",
-  "usw",
-  (const char*)0
-};
-/*}}}*/
-static const char *abbreviations_en[]= /*{{{*/
+static const char *abbreviations[]= /*{{{*/
 {
   "ch",
   "Ch",
@@ -112,36 +99,6 @@ static const char *abbreviations_en[]= /*{{{*/
   (const char*)0
 };
 /*}}}*/
-static const char *abbreviations_nl[]= /*{{{*/
-{
-  "as",
-  "aub",
-  "bijv",
-  "bv",
-  "ca",
-  "dd",
-  "dr",
-  "drs",
-  "ed",
-  "jl",
-  "maw",
-  "muv",
-  "oa",
-  "tav",
-  "tzt",
-  "zg",
-  "zgn",
-  "zoz",
-  "zsm",
-  (const char*)0
-};
-/*}}}*/
-static const char *abbreviations_none[]= /*{{{*/
-{
-  (const char*)0
-};
-/*}}}*/
-static const char **abbreviations;
 
 static int endingInAbbrev(const char *s, size_t length, const char *lang) /*{{{*/
 {
@@ -170,7 +127,7 @@ static int endingInAbbrev(const char *s, size_t length, const char *lang) /*{{{*
 
 int endingInPossesiveS(const char *s, size_t length) /*{{{*/
 {
-  return (abbreviations==abbreviations_en && length>=3 && strncmp(s+length-2,"\'s",2)==0);
+  return (length>=3 && strncmp(s+length-2,"\'s",2)==0);
 }
 /*}}}*/
 void sentence(const char *cmd, FILE *in, const char *file, void (*process)(const char *, size_t, const char *, int), const char *lang) /*{{{*/
@@ -182,18 +139,12 @@ void sentence(const char *cmd, FILE *in, const char *file, void (*process)(const
   int inSentence=0;
   int inWhiteSpace=0;
   int inParagraph=0;
-  int ellipsis=0;
   int line=1,beginLine=1;
   int err;
   regex_t hashLine;
   char filebuf[_POSIX_PATH_MAX+1];
   /*}}}*/
 
-  if (strncmp(lang,"en",2)==0) abbreviations=abbreviations_en;
-  else if (strncmp(lang,"C",1)==0) abbreviations=abbreviations_en;
-  else if (strncmp(lang,"de",2)==0) abbreviations=abbreviations_de;
-  else if (strncmp(lang,"nl",2)==0) abbreviations=abbreviations_nl;		/* JDL */
-  else abbreviations=abbreviations_none;
   /* compile #line number "file" regular expression */ /*{{{*/
   if ((err=regcomp(&hashLine,"^[ \t]*line[ \t]*\\([0-9][0-9]*\\)[ \t]*\"\\([^\"]*\\)\"",0)))
   {
