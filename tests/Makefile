@@ -2,14 +2,14 @@ EXECUTABLES=sentence
 DIFFS=sentence.diff
 OUTPUT=sentence_php.txt sentence_c.txt
 
-CC=$(which gcc)
-PHP=$(which php)
-DIFF=$(which diff)
+CC=gcc
+PHP=php
+DIFF=diff
 
 all: sentence.diff
 
 sentence.diff: sentence_c.txt sentence_php.txt
-	@$(DIFF) sentence_c.txt sentence_php.txt -u > sentence.diff
+	$(DIFF) sentence_c.txt sentence_php.txt -u > sentence.diff
 
 sentence_c.txt: sentence input.txt
 	./sentence > sentence_c.txt
