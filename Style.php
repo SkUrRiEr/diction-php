@@ -100,7 +100,7 @@ class Style extends Sentence {
 		       	$grade = 10;
 		else if ($idx < 57)
 		       	$grade = 11;
-	
+
 		return array("_value" => $idx, "grade" => $grade);
 	}
 
@@ -126,7 +126,7 @@ class Style extends Sentence {
 		foreach($list as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
-		
+
 		return false;
 	}
 
@@ -140,7 +140,7 @@ class Style extends Sentence {
 		foreach($list as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
-		
+
 		return false;
 	}
 
@@ -154,7 +154,7 @@ class Style extends Sentence {
 		foreach($list as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
-		
+
 		return false;
 	}
 
@@ -168,7 +168,7 @@ class Style extends Sentence {
 		foreach($list as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
-		
+
 		return false;
 	}
 
@@ -201,13 +201,13 @@ static int nominalization(const char *word, size_t l) /*{{{*/
  * Test if the word is an sub conjunction.  This function uses
  * docLanguage to determine the used language.
  */
- 
+
 static int subConjunction(const char *word, size_t l) /*{{{*/
 {
   static const char *en[]= /* subordinating conjunctions */ /*{{{*/
   {
-    "after", "because", "lest", "till", "'til", "although", "before", 
-    "now that", "unless", "as", "even if", "provided that", "provided", 
+    "after", "because", "lest", "till", "'til", "although", "before",
+    "now that", "unless", "as", "even if", "provided that", "provided",
     "until", "as if", "even though", "since", "as long as", "so that",
     "whenever", "as much as", "if", "than", "as soon as", "inasmuch",
     "in order that", "though", "while", (const char*)0
@@ -220,10 +220,10 @@ static int subConjunction(const char *word, size_t l) /*{{{*/
 
   while (*list)
   {
-    if (wordcmp(*list,word)==0) 
+    if (wordcmp(*list,word)==0)
     {
       phraseEnd = word+strlen(*list);
-      return 1; 
+      return 1;
     }
     else ++list;
   }
@@ -235,7 +235,7 @@ static int subConjunction(const char *word, size_t l) /*{{{*/
  * Test if the word is an preposition.  This function uses
  * docLanguage to determine the used language.
  */
- 
+
 static int preposition(const char *word, size_t l) /*{{{*/
 {
   static const char *en[]= /* prepositions */ /*{{{*/
@@ -269,7 +269,7 @@ static int preposition(const char *word, size_t l) /*{{{*/
     if (wordcmp(*list,word)==0)
     {
       phraseEnd = word+strlen(*list);
-      return 1; 
+      return 1;
     }
     else ++list;
   }
@@ -281,7 +281,7 @@ static int preposition(const char *word, size_t l) /*{{{*/
  * Test if the word is an auxiliary verb.  This function uses
  * docLanguage to determine the used language.
  */
- 
+
 static int auxVerb(const char *word, size_t l) /*{{{*/
 {
   static const char *en[]= /* auxiliary verbs */ /*{{{*/
@@ -298,10 +298,10 @@ static int auxVerb(const char *word, size_t l) /*{{{*/
 
   while (*list)
   {
-    if (wordcmp(*list,word)==0) 
+    if (wordcmp(*list,word)==0)
     {
       phraseEnd = word+strlen(*list);
-      return 1; 
+      return 1;
     }
     else ++list;
   }
@@ -319,7 +319,7 @@ static int auxVerb(const char *word, size_t l) /*{{{*/
 		foreach($list as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
-		
+
 		return false;
 	}
 
@@ -430,33 +430,33 @@ static void process(const char *str, size_t length, int line) /*{{{*/
             if (firstWord) ++beginPronouns;
           }
           else if (interrogativePronoun(s-wordLength,wordLength))
-          { 
+          {
             ++interrogativePronouns;
             if (firstWord) ++beginInterrogativePronouns;
           }
-          else if (conjunction(s-wordLength,wordLength)) 
-          { 
+          else if (conjunction(s-wordLength,wordLength))
+          {
             ++conjunctions;
             if (firstWord) ++beginConjunctions;
           }
-          else if (subConjunction(s-wordLength,wordLength)) 
-          { 
+          else if (subConjunction(s-wordLength,wordLength))
+          {
             ++subConjunctions;
             if (firstWord) ++beginSubConjunctions;
           }
-          else if (preposition(s-wordLength,wordLength)) 
-          { 
+          else if (preposition(s-wordLength,wordLength))
+          {
             ++prepositions;
             if (firstWord) ++beginPrepositions;
           }
           else if (tobeVerb(s-wordLength,wordLength))
-          { 
+          {
             ++passive;
             ++tobeVerbs;
           }
           else if (auxVerb(s-wordLength,wordLength)) ++auxVerbs;
           else if (nominalization(s-wordLength,wordLength))
-          { 
+          {
             ++nom;
             ++nominalizations;
           }
@@ -594,9 +594,9 @@ word usage:
         printf(_("        verb types:\n"));
         printf(_("        to be (%d) auxiliary (%d) \n"), tobeVerbs, auxVerbs);
         printf(_("        types as %% of total:\n"));
-        printf(_("        conjunctions %1.f% (%d) pronouns %1.f% (%d) prepositions %1.f% (%d)\n"), 
-                (100.0*(conjunctions+subConjunctions))/words, 
-                conjunctions+subConjunctions, 
+        printf(_("        conjunctions %1.f% (%d) pronouns %1.f% (%d) prepositions %1.f% (%d)\n"),
+                (100.0*(conjunctions+subConjunctions))/words,
+                conjunctions+subConjunctions,
                 (100.0*pronouns)/words, pronouns, (100.0*prepositions)/words,
                 prepositions);
         printf(_("        nominalizations %1.f% (%d)\n"),

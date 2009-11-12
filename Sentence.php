@@ -122,7 +122,7 @@ abstract class Sentence {
 				} else {
 					$sent .= $oc;
 					$length++;
-					
+
 					if(ctype_alpha($oc))
 						$inSentence = true;
 
@@ -190,7 +190,7 @@ abstract class Sentence {
 			$voc = $oc;
 			$oc = $c;
 		}
-		
+
 		if( !$inParagraph )
 			$this->process("", 0, $line);
 	}
