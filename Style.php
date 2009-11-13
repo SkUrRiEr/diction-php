@@ -88,6 +88,35 @@ class Style extends Sentence {
 		$this->tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
 
 		$this->lengths = array();
+
+		$this->characters = 0;
+		$this->syllables = 0;
+		$this->words = 0;
+		$this->shortwords = 0;
+		$this->longwords = 0;
+		$this->bigwords = 0;
+		$this->sentences = 0;
+		$this->questions = 0;
+		$this->passiveSent = 0;
+		$this->beginArticles = 0;
+		$this->beginPronouns = 0;
+		$this->pronouns = 0;
+		$this->beginInterrogativePronouns = 0;
+		$this->interrogativePronouns = 0;
+		$this->beginConjunctions = 0;
+		$this->conjunctions = 0;
+		$this->nominalizations = 0;
+		$this->prepositions = 0;
+		$this->beginPrepositions = 0;
+		$this->beginSubConjunctions = 0;
+		$this->subConjunctions = 0;
+		$this->auxVerbs = 0;
+		$this->tobeVerbs = 0;
+		$this->shortestLine = 0;
+		$this->shortestLength = 0;
+		$this->longestLine = 0;
+		$this->longestLength = 0;
+		$this->paragraphs = 0;
 	}
 
 	/**
@@ -351,12 +380,12 @@ class Style extends Sentence {
 
 		$this->sentences++;
 
-		if( !isset($this->shortestLine) || $sentWords < $this->shortestLength ) {
+		if( $this->shortestLine == 0 || $sentWords < $this->shortestLength ) {
 			$this->shortestLine = $this->sentences;
 			$this->shortestLength = $sentWords;
 		}
 
-		if( !isset($this->longestLine) || $sentWords > $this->longestLength ) {
+		if( $this->longestLine == 0 || $sentWords > $this->longestLength ) {
 			$this->longestLine = $this->sentences;
 			$this->longestLength = $sentWords;
 		}
