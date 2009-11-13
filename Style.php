@@ -56,32 +56,38 @@ class Style extends Sentence {
 	var $longestLength;
 	var $paragraphs;
 
-	static $articles;
-	static $pronouns;
-	static $interrogativePronouns;
-	static $conjunctions;
+	static $article_list;
+	static $pronoun_list;
+	static $interrogativePronoun_list;
+	static $conjunction_list;
+	static $nominalization_list;
+	static $subConjunction_list;
+	static $preposition_list;
+	static $auxVerb_list;
+	static $tobeVerb_list;
 
-	static $tobeVerbs;
+	var $lengths;
 
 	function __construct() {
-		$this->articles = array("the", "a", "an");
+		$this->article_list = array("the", "a", "an");
 
-		$this->pronouns = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
+		$this->pronoun_list = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
 
-		$this->interrogativePronouns = array("why", "who", "what", "whom", "when", "where", "how");
+		$this->interrogativePronoun_list = array("why", "who", "what", "whom", "when", "where", "how");
 
-		$this->conjunctions = array("and", "but", "or", "yet", "nor");
+		$this->conjunction_list = array("and", "but", "or", "yet", "nor");
 
+		$this->nominalization_list = array("tion", "ment", "ence", "ance");
 
-		$this->tobeVerbs = array("be", "being", "was", "were", "been", "are", "is");
-	}
+		$this->subConjunction_list = array("after", "because", "lest", "till", "'til", "although", "before", "now that", "unless", "as", "even if", "provided that", "provided", "until", "as if", "even though", "since", "as long as", "so that", "whenever", "as much as", "if", "than", "as soon as", "inasmuch", "in order that", "though", "while");
 
-	function wordcmp($r, $s) {
-		for( $i = 0; $i < min(strlen($r), strlen($s)); $i++ )
-			if( ($res = $r[$i] - strtolower($s[$])) != 0 )
-				return $res;
+		$this->preposition_list = array("aboard", "about", "above", "according to", "across from", "after", "against", "alongside", "alongside of", "along with", "amid", "among", "apart from", "around", "aside from", "at", "away from", "back of", "because of", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond", "but", "by means of", "concerning", "considering", "despite", "down", "down from", "during", "except", "except for", "excepting for", "from among", "from between", "from under", "in addition to", "in behalf of", "in front of", "in place of", "in regard to", "inside of", "inside", "in spite of", "instead of", "into", "like", "near to", "off", "on account of", "on behalf of", "onto", "on top of", "on", "opposite", "out of", "out", "outside", "outside of", "over to", "over", "owing to", "past", "prior to", "regarding", "round about", "round", "since", "subsequent to", "together", "with", "throughout", "through", "till", "toward", "under", "underneath", "until", "unto", "up", "up to", "upon", "with", "within", "without", "across", "along", "by", "of", "in", "to", "near", "of", "from");
 
-		return strlen($s) >= $i && ctype_alpha($s[$i]);
+		$this->auxVerb_list = array("will", "shall", "cannot", "may", "need to", "would", "should", "could", "might", "must", "ought", "ought to", "can't", "can");
+
+		$this->tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
+
+		$this->lengths = array();
 	}
 
 	/**
@@ -89,8 +95,8 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function article($word, $l) {
-		foreach($this->articles as $item)
-			if( $this->wordcmp($item, $word) == 0 )
+		foreach($this->article_list as $item)
+			if( $item == $word )
 				return true;
 
 		return false;
@@ -101,8 +107,8 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function pronoun($word, $l) {
-		foreach($this->pronouns as $item)
-			if( $this->wordcmp($item, $word) == 0 )
+		foreach($this->pronoun_list as $item)
+			if( $item == $word )
 				return true;
 
 		return false;
@@ -113,8 +119,8 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function interrogativePronoun($word, $l) {
-		foreach($this->interrogativePronouns as $item)
-			if( $this->wordcmp($item, $word) == 0 )
+		foreach($this->interrogativePronoun_list as $item)
+			if( $item == $word )
 				return true;
 
 		return false;
@@ -125,156 +131,70 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function conjunction($word, $l) {
-		foreach($this->conjunctions as $item)
-			if( $this->wordcmp($item, $word) == 0 )
+		foreach($this->conjunction_list as $item)
+			if( $item == $word )
 				return true;
 
 		return false;
 	}
 
-/**
- * Test if the word is a nominalization.  This function uses
- * docLanguage to determine the used language.
- */
-static int nominalization(const char *word, size_t l) /*{{{*/
-{
-  static const char *en[]= /* nominalization suffixes */ /*{{{*/
-  {
-     /* a bit limited, but it is exactly what the original style(1) did */
-     "tion", "ment", "ence", "ance", (const char*)0
-  };
-  /*}}}*/
+	/**
+	 * Test if the word is a nominalization.  This function uses
+	 * docLanguage to determine the used language.
+	 */
+	function nominalization($word, $l) {
+		if( $l < 7 )
+		       	return 0;
 
-  const char **list;
+		foreach($this->conjunction_list as $item)
+			if( $item == substr($word, strlen($word) - strlen($item)) )
+				return true;
 
-  /* exclude words too short to have such long suffixes */
-  if (l < 7) return 0;
+		return false;
+	}
 
-  list=en;
+	/**
+	 * Test if the word is an sub conjunction.  This function uses
+	 * docLanguage to determine the used language.
+	 */
+	function subConjunction($word, $l) {
+		foreach($this->subConjunction_list as $item)
+			if( $item == $word )
+				return true;
 
-  while (*list) if (wordcmp(*list,word+l-strlen(*list))==0) return 1; else ++list;
-  return 0;
-}
-/*}}}*/
+		return false;
+	}
 
-/**
- * Test if the word is an sub conjunction.  This function uses
- * docLanguage to determine the used language.
- */
+	/**
+	 * Test if the word is an preposition.  This function uses
+	 * docLanguage to determine the used language.
+	 */
+	function preposition($word, $l) {
+		foreach($this->preposition_list as $item)
+			if( $word == $item )
+				return true;
 
-static int subConjunction(const char *word, size_t l) /*{{{*/
-{
-  static const char *en[]= /* subordinating conjunctions */ /*{{{*/
-  {
-    "after", "because", "lest", "till", "'til", "although", "before",
-    "now that", "unless", "as", "even if", "provided that", "provided",
-    "until", "as if", "even though", "since", "as long as", "so that",
-    "whenever", "as much as", "if", "than", "as soon as", "inasmuch",
-    "in order that", "though", "while", (const char*)0
-  };
-  /*}}}*/
+		return false;
+	}
 
-  const char **list;
+	/**
+	 * Test if the word is an auxiliary verb.  This function uses
+	 * docLanguage to determine the used language.
+	 */
+	function auxVerb($word, $l) {
+		foreach($this->auxVerb_list as $item)
+			if( $word == $item )
+				return true;
 
-  list=en;
-
-  while (*list)
-  {
-    if (wordcmp(*list,word)==0)
-    {
-      phraseEnd = word+strlen(*list);
-      return 1;
-    }
-    else ++list;
-  }
-  return 0;
-}
-/*}}}*/
-
-/**
- * Test if the word is an preposition.  This function uses
- * docLanguage to determine the used language.
- */
-
-static int preposition(const char *word, size_t l) /*{{{*/
-{
-  static const char *en[]= /* prepositions */ /*{{{*/
-  {
-    "aboard", "about", "above", "according to", "across from",
-    "after", "against", "alongside", "alongside of", "along with",
-    "amid", "among", "apart from", "around", "aside from", "at", "away from",
-    "back of", "because of", "before", "behind", "below", "beneath", "beside",
-    "besides", "between", "beyond", "but", "by means of",
-    "concerning", "considering", "despite", "down", "down from", "during",
-    "except", "except for", "excepting for", "from among",
-    "from between", "from under", "in addition to", "in behalf of",
-    "in front of", "in place of", "in regard to", "inside of", "inside",
-    "in spite of", "instead of", "into", "like", "near to", "off",
-    "on account of", "on behalf of", "onto", "on top of", "on", "opposite",
-    "out of", "out", "outside", "outside of", "over to", "over", "owing to",
-    "past", "prior to", "regarding", "round about", "round",
-    "since", "subsequent to", "together", "with", "throughout", "through",
-    "till", "toward", "under", "underneath", "until", "unto", "up",
-    "up to", "upon", "with", "within", "without", "across", "along",
-    "by", "of", "in", "to", "near", "of", "from",  (const char*)0
-  };
-  /*}}}*/
-
-  const char **list;
-
-  list=en;
-
-  while (*list)
-  {
-    if (wordcmp(*list,word)==0)
-    {
-      phraseEnd = word+strlen(*list);
-      return 1;
-    }
-    else ++list;
-  }
-  return 0;
-}
-/*}}}*/
-
-/**
- * Test if the word is an auxiliary verb.  This function uses
- * docLanguage to determine the used language.
- */
-
-static int auxVerb(const char *word, size_t l) /*{{{*/
-{
-  static const char *en[]= /* auxiliary verbs */ /*{{{*/
-  {
-    "will", "shall", "cannot", "may", "need to", "would", "should",
-    "could", "might", "must", "ought", "ought to", "can't", "can",
-    (const char*)0
-  };
-  /*}}}*/
-
-  const char **list;
-
-  list=en;
-
-  while (*list)
-  {
-    if (wordcmp(*list,word)==0)
-    {
-      phraseEnd = word+strlen(*list);
-      return 1;
-    }
-    else ++list;
-  }
-  return 0;
-}
-/*}}}*/
+		return false;
+	}
 
 	/**
 	 * Test if the word is an 'to be' verb.  This function uses
 	 * docLanguage to determine the used language.
 	 */
 	function tobeVerb($word, $l) {
-		foreach($tobeVerbs as $item)
+		foreach($this->tobeVerb_list as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
 
@@ -304,273 +224,149 @@ static int auxVerb(const char *word, size_t l) /*{{{*/
 		return $count;
 	}
 
+	/**
+	 * Process one sentence.
+	 * @param str sentence
+	 * @param length its length
+	 */
+	function process($str, $length, $line) {
+		$firstWord = true;
+		$inword = false;
+		$innumber = false;
+		$wordLength = -1;
+		$sentWords = 0;
+		$sentLetters = 0;
+		$passive = false;
+		$nom = 0;
 
-static struct Hit lengths;
+		if($length == 0) {
+			$this->paragraphs++;
+			return;
+		}
 
-/* hit counting functions */ /*{{{*/
-struct Hit /*{{{*/
-{
-  int *data;
-  int capacity;
-  int size;
-};
-/*}}}*/
-static void newHit(struct Hit *hit) /*{{{*/
-{
-  if ((hit->data=malloc((hit->capacity=3)*sizeof(int)))==(int*)0)
-  {
-    fprintf(stderr,_("style: out of memory\n"));
-    exit(1);
-  }
-  memset(hit->data,0,hit->capacity*sizeof(int));
-  hit->size=0;
-}
-/*}}}*/
-static void noteHit(struct Hit *hit, int n) /*{{{*/
-{
-  assert(n>0);
-  if (n>hit->capacity)
-  {
-    if ((hit->data=realloc(hit->data,n*2*sizeof(int)))==(int*)0)
-    {
-      fprintf(stderr,_("style: out of memory\n"));
-      exit(1);
-    }
-    memset(hit->data+hit->capacity,0,(n*2-hit->capacity)*sizeof(int));
-    hit->capacity=n*2;
-  }
-  ++hit->data[n-1];
-  if (n>hit->size) hit->size=n;
-}
-/*}}}*/
-/*}}}*/
-/**
- * Process one sentence.
- * @param str sentence
- * @param length its length
- */
-static void process(const char *str, size_t length, int line) /*{{{*/
-{
-  int firstWord=1;
-  int inword=0;
-  int innumber=0;
-  int wordLength=-1;
-  int sentWords=0;
-  int sentLetters=0;
-  int count;
-  int passive=0;
-  int nom=0;
-  const char *s=str,*end=s+length;
+		assert($str != null);
+		assert($length >= 2);
+		
+		$phraseEnd = null;
 
-  if (length==0) { ++paragraphs; return; }
-  assert(str!=(const char*)0);
-  assert(length>=2);
-  phraseEnd = (const char*)0;
-  while (s<end)
-  {
-    if (inword)
-    {
-      if (!ctype_alpha(*s) && *s!='-' && !endingInPossesiveS(str,s-str+2))
-      {
-        inword=0;
-        count=syllables(s-wordLength,wordLength);
-        syllables+=count;
-        if (count>=3) ++bigwords;
-        else if (count==1) ++shortwords;
-        if (wordLength>6) ++longwords;
-        if (s-wordLength > phraseEnd)
-        {
-          /* part of speech tagging-- order matters! */
-          if (article(s-wordLength,wordLength) && firstWord) ++beginArticles;
-          else if (pronoun(s-wordLength,wordLength))
-          {
-            ++pronouns;
-            if (firstWord) ++beginPronouns;
-          }
-          else if (interrogativePronoun(s-wordLength,wordLength))
-          {
-            ++interrogativePronouns;
-            if (firstWord) ++beginInterrogativePronouns;
-          }
-          else if (conjunction(s-wordLength,wordLength))
-          {
-            ++conjunctions;
-            if (firstWord) ++beginConjunctions;
-          }
-          else if (subConjunction(s-wordLength,wordLength))
-          {
-            ++subConjunctions;
-            if (firstWord) ++beginSubConjunctions;
-          }
-          else if (preposition(s-wordLength,wordLength))
-          {
-            ++prepositions;
-            if (firstWord) ++beginPrepositions;
-          }
-          else if (tobeVerb(s-wordLength,wordLength))
-          {
-            ++passive;
-            ++tobeVerbs;
-          }
-          else if (auxVerb(s-wordLength,wordLength)) ++auxVerbs;
-          else if (nominalization(s-wordLength,wordLength))
-          {
-            ++nom;
-            ++nominalizations;
-          }
-        }
-        if (firstWord) firstWord = 0;
-      }
-      else
-      {
-        ++wordLength;
-        ++characters;
-        ++sentLetters;
-      }
-    }
-    else if (innumber)
-    {
-      if (ctype_digit(*s) || ((*s=='.' || *s==',') && ctype_digit(*(s+1))))
-      {
-        ++wordLength;
-        ++characters;
-        ++sentLetters;
-      }
-      else
-      {
-        innumber=0;
-        ++syllables;
-      }
-    }
-    else
-    {
-      if (ctype_alpha(*s))
-      {
-        ++words;
-        ++sentWords;
-        inword=1;
-        wordLength=1;
-        ++characters;
-        ++sentLetters;
-      }
-      else if (ctype_digit(*s))
-      {
-        ++words;
-        ++sentWords;
-        innumber=1;
-        wordLength=1;
-        ++characters;
-        ++sentLetters;
-      }
-    }
-    ++s;
-  }
-  ++sentences;
-  if (shortestLine==0 || sentWords<shortestLength)
-  {
-    shortestLine=sentences;
-    shortestLength=sentWords;
-  }
-  if (longestLine==0 || sentWords>longestLength)
-  {
-    longestLine=sentences;
-    longestLength=sentWords;
-  }
-  if (str[length-1]=='?') ++questions;
-  noteHit(&lengths,sentWords);
-  if (passive) ++passiveSent;
-}
-/*}}}*/
+		for( $i = 0; $i < $length; $i++ ) {
+			$s = $str[$i];
+			
+			if( $inword ) {
+				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossesiveS($str, $i + 2) ) {
+					$word = substr($str, $i - $wordLength, $wordLength);
 
-int main(int argc, char *argv[]) /*{{{*/
-{
-  newHit(&lengths);
+					$inword = false;
 
-  sentence(stdin,"(stdin)");
+					$count = $this->syllables($word, $wordLength);
+					$this->syllables += $count;
 
-  if (sentences==0)
-  {
-    printf(_("No sentences found.\n"));
-  }
-  else
-  {
-    double fl;
-    int wsg;
-    int lixg;
-    int i,shortLength,shortSent,longLength,longSent;
+					if( $count >= 3 )
+						$this->bigwords++;
+					else if( $count == 1 )
+						$this->shortwords++;
 
-    printf(_("readability grades:\n"));
-    printf("        %s: %.1f\n","Kincaid",kincaid(syllables,words,sentences));
-    printf("        %s: %.1f\n","ARI",ari(characters,words,sentences));
-    printf("        %s: %.1f\n","Coleman-Liau",coleman_liau(characters,words,sentences));
-    fl=flesch(syllables,words,sentences);
-    printf("        %s: %.1f%s\n","Flesch Index",fl,fl>=60 && fl<=70 ? _("/100 (plain English)") : _("/100"));
-    printf("        %s: %.1f\n","Fog Index",fog(words,bigwords,sentences));
-    printf("        %s: %.1f\n","1. WSTF Index",wstf(words,shortwords,longwords,bigwords,sentences));
-    printf("        %s: %.1f = ","Wheeler-Smith Index",wheeler_smith(&wsg,words,bigwords,sentences));
-    if (wsg==0) printf(_("below school year 5\n"));
-    else if (wsg==99) printf(_("higher than school year 10\n"));
-    else printf(_("school year %d\n"),wsg);
-    printf("        %s: %.1f = ",_("Lix"),lix(&lixg,words,longwords,sentences));
-    if (lixg==0) printf(_("below school year 5\n"));
-    else if (lixg==99) printf(_("higher than school year 11\n"));
-    else printf(_("school year %d\n"),lixg);
-    printf("        %s: %.1f\n",_("SMOG-Grading"),smog(bigwords,sentences));
+					if( $wordLength > 6 )
+						$this->longwords++;
 
-    printf(_("sentence info:\n"));
-    printf(_("        %d characters\n"),characters);
-    printf(_("        %d words, average length %.2f characters = %.2f syllables\n"),words,((double)characters)/words,((double)syllables)/words);
-    printf(_("        %d sentences, average length %.1f words\n"),sentences,((double)words)/sentences);
-    shortLength=((double)words)/sentences-4.5;
-    if (shortLength<1) shortLength=1;
-    for (i=0,shortSent=0; i<=shortLength; ++i) shortSent+=lengths.data[i];
-    printf(_("        %d%% (%d) short sentences (at most %d words)\n"),100*shortSent/sentences,shortSent,shortLength);
-    longLength=((double)words)/sentences+10.5;
-    for (i=longLength,longSent=0; i<=lengths.size; ++i) longSent+=lengths.data[i];
-    printf(_("        %d%% (%d) long sentences (at least %d words)\n"),100*longSent/sentences,longSent,longLength);
-    printf(_("        %d paragraphs, average length %.1f sentences\n"),paragraphs,((double)sentences)/paragraphs);
-    printf(_("        %d%% (%d) questions\n"),100*questions/sentences,questions);
-    printf(_("        %d%% (%d) passive sentences\n"),100*passiveSent/sentences,passiveSent);
-    printf(_("        longest sent %d wds at sent %d; shortest sent %d wds at sent %d\n"),longestLength,longestLine,shortestLength,shortestLine);
+					if( $i - $wordLength > $phraseEnd ) {
+						/* part of speech tagging-- order matters! */
+						if( $this->article($word, $wordLength) && $firstWord )
+						       	$this->beginArticles++;
+						else if( $this->pronoun($word, $wordLength) ) {
+							$this->pronouns++;
 
-/*
-Missing output:
+							if( $firstWord )
+								$this->beginPronouns++;
+						} else if( $this->interrogativePronoun($word, $wordLength) ) {
+							$this->interrogativePronouns++;
 
-sentence types:
-        simple 100% (1) complex   0% (0)
-        compound   0% (0) compound-complex   0% (0)
-word usage:
-        verb types as % of total verbs
-        tobe 100% (1) aux   0% (0) inf   0% (0)
-        passives as % of non-inf verbs   0% (0)
-        types as % of total
-        prep 0.0% (0) conj 0.0% (0) adv 0.0% (0)
-        noun 25.0% (1) adj 25.0% (1) pron 25.0% (1)
-        nominalizations   0 % (0)
-*/
-        printf(_("word usage:\n"));
-        printf(_("        verb types:\n"));
-        printf(_("        to be (%d) auxiliary (%d) \n"), tobeVerbs, auxVerbs);
-        printf(_("        types as %% of total:\n"));
-        printf(_("        conjunctions %1.f% (%d) pronouns %1.f% (%d) prepositions %1.f% (%d)\n"),
-                (100.0*(conjunctions+subConjunctions))/words,
-                conjunctions+subConjunctions,
-                (100.0*pronouns)/words, pronouns, (100.0*prepositions)/words,
-                prepositions);
-        printf(_("        nominalizations %1.f% (%d)\n"),
-                (100.0*nominalizations)/words, nominalizations);
+							if( $firstWord )
+								$this->beginInterrogativePronouns++;
+						} else if( $this->conjunction($word, $wordLength) ) {
+							$this->conjunctions++;
 
-        printf(_("sentence beginnings:\n"));
-        printf(_("        pronoun (%d) interrogative pronoun (%d) article (%d)\n"),beginPronouns,beginInterrogativePronouns,beginArticles);
-        printf(_("        subordinating conjunction (%d) conjunction (%d) preposition (%d)\n"), beginSubConjunctions,beginConjunctions,beginPrepositions);
+							if( $firstWord )
+								$this->beginConjunctions++;
+						} else if( $this->subConjunction($word, $wordLength) ) {
+							$phraseEnd = $i;
 
-/*
-        subject opener: noun (0) pron (1) pos (0) adj (0) art (0) tot 100%
-        prep   0% (0) adv   0% (0)
-        verb   0% (0)  sub_conj   0% (0) conj   0% (0)
-        expletives   0% (0)
-*/
-  }
-  exit(0);
-}
-/*}}}*/
+							$this->subConjunctions++;
+
+							if( $firstWord )
+								$this->beginSubConjunctions++;
+						} else if( $this->preposition($word, $wordLength) ) {
+							$phraseEnd = $i;
+
+							$this->prepositions++;
+
+							if( $firstWord )
+								$this->beginPrepositions++;
+						} else if( $this->tobeVerb($word, $wordLength) ) {
+							$passive = true;
+							$this->tobeVerbs++;
+						} else if( $this->auxVerb($word, $wordLength) ) {
+							$this->auxVerbs++;
+							$phraseEnd = $i;
+						} else if( $this->nominalization($word, $wordLength) ) {
+							$nom++;
+							$this->nominalizations++;
+						}
+					}
+					
+					if( $firstWord )
+						$firstWord = false;
+				} else {
+					$wordLength++;
+					$this->characters++;
+					$sentLetters++;
+				}
+			} else if( $innumber ) {
+				if( ctype_digit($s) || (($s == "." || $s == ",") && ctype_digit($str[$i + 1])) ) {
+					$wordLength++;
+					$this->characters++;
+					$sentLetters++;
+				} else {
+					$innumber = false;
+					$this->syllables++;
+				}
+			} else {
+				if( ctype_alpha($s) ) {
+					$this->words++;
+					$sentWords++;
+					$inword = true;
+					$wordLength = 1;
+					$this->characters++;
+					$sentLetters++;
+				} else if( ctype_digit($s) ) {
+					$this->words++;
+					$sentWords++;
+					$innumber = true;
+					$wordLength = 1;
+					$this->characters++;
+					$sentLetters++;
+				}
+			}
+		}
+
+		$this->sentences++;
+
+		if( !isset($this->shortestLine) || $sentWords < $this->shortestLength ) {
+			$this->shortestLine = $this->sentences;
+			$this->shortestLength = $sentWords;
+		}
+
+		if( !isset($this->longestLine) || $sentWords > $this->longestLength ) {
+			$this->longestLine = $this->sentences;
+			$this->longestLength = $sentWords;
+		}
+
+		if( $str[$length - 1] == '?' )
+			$this->questions++;
+
+		$this->lengths[] = $sentWords;
+		
+		if( $passive )
+		       	$this->passiveSent++;
+	}
+?>
