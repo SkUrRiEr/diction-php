@@ -276,14 +276,14 @@ class Style extends Sentence {
 		assert($str != null);
 		assert($length >= 2);
 		
-		$phraseEnd = null;
+		$phraseEnd = 0;
 
 		for( $i = 0; $i < $length; $i++ ) {
 			$s = $str[$i];
 			
 			if( $inword ) {
 				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossessiveS($str, $i + 2) ) {
-					$word = substr($str, $i - $wordLength, $wordLength);
+					$word = strtolower(substr($str, $i - $wordLength, $wordLength));
 
 					$inword = false;
 
@@ -298,9 +298,9 @@ class Style extends Sentence {
 					if( $wordLength > 6 )
 						$this->longwords++;
 
-					if( $i - $wordLength > $phraseEnd ) {
+					if( $phraseEnd == 0 || ($i - $wordLength) > $phraseEnd ) {
 						/* part of speech tagging-- order matters! */
-						if( $this->article($word, $wordLength) && $firstWord )
+						if( $firstWord && $this->article($word, $wordLength) )
 						       	$this->beginArticles++;
 						else if( $this->pronoun($word, $wordLength) ) {
 							$this->pronouns++;
