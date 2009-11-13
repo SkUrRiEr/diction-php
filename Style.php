@@ -56,6 +56,26 @@ class Style extends Sentence {
 	var $longestLength;
 	var $paragraphs;
 
+	static $articles;
+	static $pronouns;
+	static $interrogativePronouns;
+	static $conjunctions;
+
+	static $tobeVerbs;
+
+	function __construct() {
+		$this->articles = array("the", "a", "an");
+
+		$this->pronouns = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
+
+		$this->interrogativePronouns = array("why", "who", "what", "whom", "when", "where", "how");
+
+		$this->conjunctions = array("and", "but", "or", "yet", "nor");
+
+
+		$this->tobeVerbs = array("be", "being", "was", "were", "been", "are", "is");
+	}
+
 	function wordcmp($r, $s) {
 		for( $i = 0; $i < min(strlen($r), strlen($s)); $i++ )
 			if( ($res = $r[$i] - strtolower($s[$])) != 0 )
@@ -69,9 +89,7 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function article($word, $l) {
-		$list = array("the", "a", "an");
-
-		foreach($list as $item)
+		foreach($this->articles as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
 
@@ -83,9 +101,7 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function pronoun($word, $l) {
-		$list = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
-
-		foreach($list as $item)
+		foreach($this->pronouns as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
 
@@ -97,9 +113,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function interrogativePronoun($word, $l) {
-		$list = array("why", "who", "what", "whom", "when", "where", "how");
-
-		foreach($list as $item)
+		foreach($this->interrogativePronouns as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
 
@@ -111,9 +125,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function conjunction($word, $l) {
-		$list = array("and", "but", "or", "yet", "nor");
-
-		foreach($list as $item)
+		foreach($this->conjunctions as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
 
@@ -262,9 +274,7 @@ static int auxVerb(const char *word, size_t l) /*{{{*/
 	 * docLanguage to determine the used language.
 	 */
 	function tobeVerb($word, $l) {
-		$list = array("be", "being", "was", "were", "been", "are", "is");
-
-		foreach($list as $item)
+		foreach($tobeVerbs as $item)
 			if( $this->wordcmp($item, $word) == 0 )
 				return true;
 
