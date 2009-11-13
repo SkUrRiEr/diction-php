@@ -150,7 +150,7 @@ abstract class Sentence {
 					if(ctype_alpha($oc))
 						$inSentence = true;
 
-					if( preg_match("/\s*\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) )
+					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) )
 						$inWhiteSpace = false;
 					else if( preg_match("/^(.*[^ ])\.\.\.$/", $sent, $regs) && ($c == -1 || ctype_space($c)) ) {
 						/* beginning ellipsis */
