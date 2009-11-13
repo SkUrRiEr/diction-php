@@ -195,7 +195,7 @@ class Style extends Sentence {
 	 */
 	function tobeVerb($word, $l) {
 		foreach($this->tobeVerb_list as $item)
-			if( $this->wordcmp($item, $word) == 0 )
+			if( $item == $word )
 				return true;
 
 		return false;
@@ -253,7 +253,7 @@ class Style extends Sentence {
 			$s = $str[$i];
 			
 			if( $inword ) {
-				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossesiveS($str, $i + 2) ) {
+				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossessiveS($str, $i + 2) ) {
 					$word = substr($str, $i - $wordLength, $wordLength);
 
 					$inword = false;
@@ -369,4 +369,6 @@ class Style extends Sentence {
 		if( $passive )
 		       	$this->passiveSent++;
 	}
+}
+
 ?>
