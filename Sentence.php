@@ -88,30 +88,30 @@ abstract class Sentence {
 
 	function endingInAbbrev($s, $length) {
 		if( ctype_alpha($s[$length - 1]) )
-			return 0;
+			return false;
 
 		if( $this->endingInPossessiveS($s, $length) )
-			return 0;
+			return false;
 
 		foreach($this->abbreviations as $abbrev) {
 			$aLength = strlen($abbrev);
 
 			if( $aLength < $length ) {
 				if( !ctype_alpha($s[$length - 2]) )
-					return 1;
+					return true;
 
 				if( !ctype_alpha($s[$length - $aLength - 1]) && substr($s, $length - $aLength, $aLength) == $abbrev )
-					return 1;
+					return true;
 			} else {
 				if( $length == 1 )
-					return 1;
+					return true;
 
 				if( $aLength == $length && substr($s, 0, $aLength) == $abbrev )
-					return 1;
+					return false;
 			}
 		}
 
-		return 0;
+		return false;
 	}
 
 	function sentence($in) {
