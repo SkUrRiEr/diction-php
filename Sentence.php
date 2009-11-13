@@ -180,7 +180,7 @@ abstract class Sentence {
 						$length = 0;
 						$inWhiteSpace = false;
 						$inSentence = false;
-					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && (!ctype_digit($voc) || $oc != "." || !ctype_digit($c)) && ($oc != "." || !$this->endingInAbbrev($sent, $length)) ) {
+					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && ($oc != "." || !$this->endingInAbbrev($sent, $length)) ) {
 						/* end of sentence */
 						if( $inWhiteSpace ) {
 							$length--;
