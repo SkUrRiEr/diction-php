@@ -87,7 +87,7 @@ abstract class Sentence {
 	}
 
 	function endingInAbbrev($s, $length) {
-		if( ctype_alpha($s[$length - 1]) )
+		if( !ctype_alpha($s[$length - 1]) )
 			return false;
 
 		if( $this->endingInPossessiveS($s, $length) )
@@ -106,8 +106,8 @@ abstract class Sentence {
 				if( $length == 1 )
 					return true;
 
-				if( $aLength == $length && substr($s, 0, $aLength) == $abbrev )
-					return false;
+				if( $s == $abbrev )
+					return true;
 			}
 		}
 
