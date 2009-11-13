@@ -14,7 +14,7 @@ sentence.diff: sentence_c.txt sentence_php.txt
 sentence_c.txt: sentence input.txt
 	./sentence > sentence_c.txt
 
-sentence_php.txt: sentence.php input.txt
+sentence_php.txt: ../Sentence.php sentence.php input.txt
 	$(PHP) sentence.php > sentence_php.txt
 
 sentence: sentence.c
