@@ -237,13 +237,13 @@ class Style extends Sentence {
 	function syllables($s, $l) {
 		$count = 0;
 
-		if( $l >= 2 && substr($s, $l - 2, 2) == "ed" )
+		if( $l >= 2 && preg_match("/ed$/", $s) )
 			$l -= 2;
 
 		for( $i = 0; $l > 0; $i++, $l-- )
 			if ($l >= 2 && $this->vowel($s[$i]) && !$this->vowel($s[$i + 1])) {
 				$count++;
-				$s++;
+				$i++;
 				$l--;
 			}
 
