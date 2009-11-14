@@ -35,4 +35,9 @@ echo "longestLine: ".$cls->longestLine."\n";
 echo "longestLength: ".$cls->longestLength."\n";
 echo "paragraphs: ".$cls->paragraphs."\n";
 
+echo "\nLengths:\n";
+
+foreach($cls->lengths as $i => $item)
+	echo ($i + 1).": ".$item."\n";
+
 ?>

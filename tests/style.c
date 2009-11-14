@@ -1091,6 +1091,13 @@ printf("longestLine: %d\n", longestLine);
 printf("longestLength: %d\n", longestLength);
 printf("paragraphs: %d\n", paragraphs);
 
+printf("\nLengths:\n");
+
+int i;
+
+for (i=0; i<=lengths.size; i++)
+	printf("%d: %d\n", i + 1, lengths.data[i]);
+
     return 0;
 }
 /*}}}*/
