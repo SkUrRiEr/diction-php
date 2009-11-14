@@ -175,7 +175,7 @@ class Style extends Sentence {
 		if( $l < 7 )
 		       	return 0;
 
-		foreach($this->conjunction_list as $item)
+		foreach($this->nominalization_list as $item)
 			if( $item == substr($word, strlen($word) - strlen($item)) )
 				return true;
 
