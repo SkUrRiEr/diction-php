@@ -393,7 +393,7 @@ class Style extends Sentence {
 		if( $str[$length - 1] == '?' )
 			$this->questions++;
 
-		$this->lengths[] = $sentWords;
+		$this->lengths[$sentWords]++;
 		
 		if( $passive )
 		       	$this->passiveSent++;
