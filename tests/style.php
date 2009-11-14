@@ -35,9 +35,12 @@ echo "longestLine: ".$cls->longestLine."\n";
 echo "longestLength: ".$cls->longestLength."\n";
 echo "paragraphs: ".$cls->paragraphs."\n";
 
-echo "\nLengths:\n";
+echo "\nSentence Length : Count\n";
+
+ksort($cls->lengths);
 
 foreach($cls->lengths as $i => $item)
-	echo ($i + 1).": ".$item."\n";
+	if( $item != 0 )
+		echo $i." : ".$item."\n";
 
 ?>
