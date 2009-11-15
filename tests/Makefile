@@ -6,7 +6,10 @@ CC=gcc
 PHP=php
 DIFF=diff
 
-all: sentence.diff style.diff
+all: $(DIFFS)
+
+backup:
+	for i in $(DIFFS); do [ -f $$i ] && cp $$i $$i.old; done
 
 sentence.diff: sentence_c.txt sentence_php.txt
 	$(DIFF) sentence_c.txt sentence_php.txt -u > sentence.diff
@@ -35,5 +38,8 @@ style: style.c
 clean:
 	rm -f $(OUTPUT)
 
-distclean: clean
+cleanbackups:
+	for i in $(DIFFS); do rm -f $$i.old; done
+
+distclean: clean cleanbackups
 	rm -f $(EXECUTABLES) $(DIFFS)
