@@ -29,7 +29,7 @@ style.diff: style_c.txt style_php.txt
 style_c.txt: style input.txt
 	./style > style_c.txt
 
-style_php.txt: ../Style.php style.php input.txt
+style_php.txt: ../Style.php ../Sentence.php style.php input.txt
 	$(PHP) style.php > style_php.txt
 
 style: style.c
