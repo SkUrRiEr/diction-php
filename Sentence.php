@@ -83,7 +83,7 @@ abstract class Sentence {
 	}
 
 	function endingInPossessiveS($s, $length) {
-		return ($length >= 3 && substr($s, $length - 2, 2) == "\'s");
+		return ($length >= 3 && substr($s, $length - 2, 2) == "'s");
 	}
 
 	function endingInAbbrev($s, $length) {
