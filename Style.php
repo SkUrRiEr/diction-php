@@ -119,16 +119,20 @@ class Style extends Sentence {
 		$this->paragraphs = 0;
 	}
 
+	function listcmp($word, $list) {
+		foreach($list as $item)
+			if( $item == $word )
+				return true;
+
+		return false;
+	}
+
 	/**
 	 * Test if the word is an article.  This function uses docLanguage to
 	 * determine the used language.
 	 */
 	function article($word, $l) {
-		foreach($this->article_list as $item)
-			if( $item == $word )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->article_list);
 	}
 
 	/**
@@ -136,11 +140,7 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function pronoun($word, $l) {
-		foreach($this->pronoun_list as $item)
-			if( $item == $word )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->pronoun_list);
 	}
 
 	/**
@@ -148,11 +148,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function interrogativePronoun($word, $l) {
-		foreach($this->interrogativePronoun_list as $item)
-			if( $item == $word )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->interrogativePronoun_list);
 	}
 
 	/**
@@ -160,11 +156,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function conjunction($word, $l) {
-		foreach($this->conjunction_list as $item)
-			if( $item == $word )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->conjunction_list);
 	}
 
 	/**
@@ -187,11 +179,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function subConjunction($word, $l) {
-		foreach($this->subConjunction_list as $item)
-			if( $item == $word )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->subConjunction_list);
 	}
 
 	/**
@@ -199,11 +187,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function preposition($word, $l) {
-		foreach($this->preposition_list as $item)
-			if( $word == $item )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->preposition_list);
 	}
 
 	/**
@@ -211,11 +195,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function auxVerb($word, $l) {
-		foreach($this->auxVerb_list as $item)
-			if( $word == $item )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->auxVerb_list);
 	}
 
 	/**
@@ -223,11 +203,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function tobeVerb($word, $l) {
-		foreach($this->tobeVerb_list as $item)
-			if( $item == $word )
-				return true;
-
-		return false;
+		return $this->listcmp($word, $this->tobeVerb_list);
 	}
 
 	function vowel($c) {
