@@ -120,11 +120,8 @@ class Style extends Sentence {
 	}
 
 	function listcmp($word, $list) {
-		if( preg_match("/^([[:alpha:]]+)[^[:alpha:]]/", $word, $regs) )
-			$word = $regs[1];
-
 		foreach($list as $item)
-			if( $item == $word )
+			if( $item == substr($word, 0, strlen($item)) && !ctype_alpha($word[strlen($item)]) )
 				return true;
 
 		return false;
@@ -263,6 +260,7 @@ class Style extends Sentence {
 			if( $inword ) {
 				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossessiveS($str, $i + 2) ) {
 					$word = strtolower(substr($str, $i - $wordLength, $wordLength));
+					$wordstring = strtolower(substr($str, $i - $wordLength));
 
 					$inword = false;
 
@@ -279,41 +277,41 @@ class Style extends Sentence {
 
 					if( $phraseEnd == 0 || ($i - $wordLength) > $phraseEnd ) {
 						/* part of speech tagging-- order matters! */
-						if( $firstWord && $this->article($word, $wordLength) )
+						if( $firstWord && $this->article($wordstring, $wordLength) )
 						       	$this->beginArticles++;
-						else if( $this->pronoun($word, $wordLength) ) {
+						else if( $this->pronoun($wordstring, $wordLength) ) {
 							$this->pronouns++;
 
 							if( $firstWord )
 								$this->beginPronouns++;
-						} else if( $this->interrogativePronoun($word, $wordLength) ) {
+						} else if( $this->interrogativePronoun($wordstring, $wordLength) ) {
 							$this->interrogativePronouns++;
 
 							if( $firstWord )
 								$this->beginInterrogativePronouns++;
-						} else if( $this->conjunction($word, $wordLength) ) {
+						} else if( $this->conjunction($wordstring, $wordLength) ) {
 							$this->conjunctions++;
 
 							if( $firstWord )
 								$this->beginConjunctions++;
-						} else if( $this->subConjunction($word, $wordLength) ) {
+						} else if( $this->subConjunction($wordstring, $wordLength) ) {
 							$phraseEnd = $i;
 
 							$this->subConjunctions++;
 
 							if( $firstWord )
 								$this->beginSubConjunctions++;
-						} else if( $this->preposition($word, $wordLength) ) {
+						} else if( $this->preposition($wordstring, $wordLength) ) {
 							$phraseEnd = $i;
 
 							$this->prepositions++;
 
 							if( $firstWord )
 								$this->beginPrepositions++;
-						} else if( $this->tobeVerb($word, $wordLength) ) {
+						} else if( $this->tobeVerb($wordstring, $wordLength) ) {
 							$passive = true;
 							$this->tobeVerbs++;
-						} else if( $this->auxVerb($word, $wordLength) ) {
+						} else if( $this->auxVerb($wordstring, $wordLength) ) {
 							$this->auxVerbs++;
 							$phraseEnd = $i;
 						} else if( $this->nominalization($word, $wordLength) ) {
