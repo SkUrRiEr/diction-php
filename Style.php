@@ -120,6 +120,9 @@ class Style extends Sentence {
 	}
 
 	function listcmp($word, $list) {
+		if( preg_match("/^([[:alpha:]]+)[^[:alpha:]]/", $word, $regs) )
+			$word = $regs[1];
+
 		foreach($list as $item)
 			if( $item == $word )
 				return true;
