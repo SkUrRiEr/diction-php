@@ -229,6 +229,12 @@ class Style extends Sentence {
 		return $count;
 	}
 
+	function processString($in) {
+		parent::processString($in);
+
+		ksort($cls->lengths);
+	}
+
 	/**
 	 * Process one sentence.
 	 * @param str sentence

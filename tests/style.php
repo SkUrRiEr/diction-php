@@ -37,8 +37,6 @@ echo "paragraphs: ".$cls->paragraphs."\n";
 
 echo "\nSentence Length : Count\n";
 
-ksort($cls->lengths);
-
 foreach($cls->lengths as $i => $item)
 	if( $item != 0 )
 		echo $i." : ".$item."\n";
