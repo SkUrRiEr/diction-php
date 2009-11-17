@@ -27,7 +27,7 @@
 abstract class Sentence {
 	static $abbreviations;
 
-	abstract function process($string, $length, $line);
+	abstract function processSentence($string, $length, $line);
 
 	function __construct() {
 		$this->abbreviations = array(
@@ -114,7 +114,7 @@ abstract class Sentence {
 		return false;
 	}
 
-	function sentence($in) {
+	function processString($in) {
 		$sent = "";
 		$length = 0;
 		$capacity = 128;
@@ -157,7 +157,7 @@ abstract class Sentence {
 						$sent = $regs[1];
 
 						if( $inSentence )
-							$this->process($sent, $length - 3, $beginLine);
+							$this->processSentence($sent, $length - 3, $beginLine);
 
 						$sent = "...";
 						$length = 3;
@@ -174,7 +174,7 @@ abstract class Sentence {
 						}
 
 						if( $inSentence )
-							$this->process($sent, $length, $beginLine);
+							$this->processSentence($sent, $length, $beginLine);
 
 						$sent = "";
 						$length = 0;
@@ -189,7 +189,7 @@ abstract class Sentence {
 						}
 
 						if( $inSentence )
-							$this->process($sent, $length, $beginLine);
+							$this->processSentence($sent, $length, $beginLine);
 						$sent = "";
 						$length = 0;
 						$inWhiteSpace = false;
@@ -206,7 +206,7 @@ abstract class Sentence {
 				$beginLine = $line;
 				$inSentence = true;
 			} else if( !$inParagraph && $oc == "\n" && $c == "\n" ) {
-				$this->process("", 0, $line);
+				$this->processSentence("", 0, $line);
 
 				$inParagraph = true;
 			}
@@ -216,7 +216,7 @@ abstract class Sentence {
 		}
 
 		if( !$inParagraph )
-			$this->process("", 0, $line);
+			$this->processSentence("", 0, $line);
 	}
 }
 

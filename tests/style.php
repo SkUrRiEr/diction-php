@@ -4,7 +4,7 @@ include_once("../Style.php");
 
 $cls = new Style();
 
-$cls->sentence(file_get_contents("input.txt"));
+$cls->processString(file_get_contents("input.txt"));
 
 echo "characters: ".$cls->characters."\n";
 echo "syllables: ".$cls->syllables."\n";

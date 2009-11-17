@@ -234,7 +234,7 @@ class Style extends Sentence {
 	 * @param str sentence
 	 * @param length its length
 	 */
-	function process($str, $length, $line) {
+	function processSentence($str, $length, $line) {
 		$firstWord = true;
 		$inword = false;
 		$innumber = false;
