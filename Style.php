@@ -222,7 +222,7 @@ class Style extends Sentence {
 	function processString($in) {
 		parent::processString($in);
 
-		ksort($cls->lengths);
+		ksort($this->lengths);
 	}
 
 	/**
