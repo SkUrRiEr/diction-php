@@ -237,7 +237,6 @@ class Style extends Sentence {
 		$wordLength = -1;
 		$sentWords = 0;
 		$passive = false;
-		$nom = 0;
 
 		if($length == 0) {
 			$this->paragraphs++;
@@ -310,10 +309,8 @@ class Style extends Sentence {
 							$phraseEnd = $i - $wordLength + $len;
 
 							$this->auxVerbs++;
-						} else if( $this->nominalization($word, $wordLength) ) {
-							$nom++;
+						} else if( $this->nominalization($word, $wordLength) )
 							$this->nominalizations++;
-						}
 					}
 					
 					if( $firstWord )
