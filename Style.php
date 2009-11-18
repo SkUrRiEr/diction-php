@@ -56,6 +56,8 @@ class Style extends Sentence {
 	var $longestLength;
 	var $paragraphs;
 
+	var $lengths;
+
 	public static $article_list = array("the", "a", "an");
 
 	public static $pronoun_list = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
@@ -73,8 +75,6 @@ class Style extends Sentence {
 	public static $tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
 
 	public static $nominalization_list = array("tion", "ment", "ence", "ance");
-
-	var $lengths;
 
 	function __construct() {
 		$this->lengths = array();
