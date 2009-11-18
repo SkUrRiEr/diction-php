@@ -56,37 +56,27 @@ class Style extends Sentence {
 	var $longestLength;
 	var $paragraphs;
 
-	static $article_list;
-	static $pronoun_list;
-	static $interrogativePronoun_list;
-	static $conjunction_list;
-	static $subConjunction_list;
-	static $preposition_list;
-	static $auxVerb_list;
-	static $tobeVerb_list;
-	static $nominalization_list;
+	public static $article_list = array("the", "a", "an");
+
+	public static $pronoun_list = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
+
+	public static $interrogativePronoun_list = array("why", "who", "what", "whom", "when", "where", "how");
+
+	public static $conjunction_list = array("and", "but", "or", "yet", "nor");
+
+	public static $subConjunction_list = array("after", "because", "lest", "till", "'til", "although", "before", "now that", "unless", "as", "even if", "provided that", "provided", "until", "as if", "even though", "since", "as long as", "so that", "whenever", "as much as", "if", "than", "as soon as", "inasmuch", "in order that", "though", "while");
+
+	public static $preposition_list = array("aboard", "about", "above", "according to", "across from", "after", "against", "alongside", "alongside of", "along with", "amid", "among", "apart from", "around", "aside from", "at", "away from", "back of", "because of", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond", "but", "by means of", "concerning", "considering", "despite", "down", "down from", "during", "except", "except for", "excepting for", "from among", "from between", "from under", "in addition to", "in behalf of", "in front of", "in place of", "in regard to", "inside of", "inside", "in spite of", "instead of", "into", "like", "near to", "off", "on account of", "on behalf of", "onto", "on top of", "on", "opposite", "out of", "out", "outside", "outside of", "over to", "over", "owing to", "past", "prior to", "regarding", "round about", "round", "since", "subsequent to", "together", "with", "throughout", "through", "till", "toward", "under", "underneath", "until", "unto", "up", "up to", "upon", "with", "within", "without", "across", "along", "by", "of", "in", "to", "near", "of", "from");
+
+	public static $auxVerb_list = array("will", "shall", "cannot", "may", "need to", "would", "should", "could", "might", "must", "ought", "ought to", "can't", "can");
+
+	public static $tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
+
+	public static $nominalization_list = array("tion", "ment", "ence", "ance");
 
 	var $lengths;
 
 	function __construct() {
-		$this->article_list = array("the", "a", "an");
-
-		$this->pronoun_list = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
-
-		$this->interrogativePronoun_list = array("why", "who", "what", "whom", "when", "where", "how");
-
-		$this->conjunction_list = array("and", "but", "or", "yet", "nor");
-
-		$this->subConjunction_list = array("after", "because", "lest", "till", "'til", "although", "before", "now that", "unless", "as", "even if", "provided that", "provided", "until", "as if", "even though", "since", "as long as", "so that", "whenever", "as much as", "if", "than", "as soon as", "inasmuch", "in order that", "though", "while");
-
-		$this->preposition_list = array("aboard", "about", "above", "according to", "across from", "after", "against", "alongside", "alongside of", "along with", "amid", "among", "apart from", "around", "aside from", "at", "away from", "back of", "because of", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond", "but", "by means of", "concerning", "considering", "despite", "down", "down from", "during", "except", "except for", "excepting for", "from among", "from between", "from under", "in addition to", "in behalf of", "in front of", "in place of", "in regard to", "inside of", "inside", "in spite of", "instead of", "into", "like", "near to", "off", "on account of", "on behalf of", "onto", "on top of", "on", "opposite", "out of", "out", "outside", "outside of", "over to", "over", "owing to", "past", "prior to", "regarding", "round about", "round", "since", "subsequent to", "together", "with", "throughout", "through", "till", "toward", "under", "underneath", "until", "unto", "up", "up to", "upon", "with", "within", "without", "across", "along", "by", "of", "in", "to", "near", "of", "from");
-
-		$this->auxVerb_list = array("will", "shall", "cannot", "may", "need to", "would", "should", "could", "might", "must", "ought", "ought to", "can't", "can");
-
-		$this->tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
-
-		$this->nominalization_list = array("tion", "ment", "ence", "ance");
-
 		$this->lengths = array();
 
 		$this->characters = 0;
@@ -132,7 +122,7 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function article($word) {
-		return $this->listcmp($word, $this->article_list);
+		return $this->listcmp($word, Style::$article_list);
 	}
 
 	/**
@@ -140,7 +130,7 @@ class Style extends Sentence {
 	 * determine the used language.
 	 */
 	function pronoun($word) {
-		return $this->listcmp($word, $this->pronoun_list);
+		return $this->listcmp($word, Style::$pronoun_list);
 	}
 
 	/**
@@ -148,7 +138,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function interrogativePronoun($word) {
-		return $this->listcmp($word, $this->interrogativePronoun_list);
+		return $this->listcmp($word, Style::$interrogativePronoun_list);
 	}
 
 	/**
@@ -156,7 +146,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function conjunction($word) {
-		return $this->listcmp($word, $this->conjunction_list);
+		return $this->listcmp($word, Style::$conjunction_list);
 	}
 
 	/**
@@ -164,7 +154,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function subConjunction($word) {
-		return $this->listcmp($word, $this->subConjunction_list);
+		return $this->listcmp($word, Style::$subConjunction_list);
 	}
 
 	/**
@@ -172,7 +162,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function preposition($word) {
-		return $this->listcmp($word, $this->preposition_list);
+		return $this->listcmp($word, Style::$preposition_list);
 	}
 
 	/**
@@ -180,7 +170,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function auxVerb($word) {
-		return $this->listcmp($word, $this->auxVerb_list);
+		return $this->listcmp($word, Style::$auxVerb_list);
 	}
 
 	/**
@@ -188,7 +178,7 @@ class Style extends Sentence {
 	 * docLanguage to determine the used language.
 	 */
 	function tobeVerb($word) {
-		return $this->listcmp($word, $this->tobeVerb_list);
+		return $this->listcmp($word, Style::$tobeVerb_list);
 	}
 
 	/**
@@ -199,7 +189,7 @@ class Style extends Sentence {
 		if( $l < 7 )
 		       	return 0;
 
-		foreach($this->nominalization_list as $item)
+		foreach(Style::$nominalization_list as $item)
 			if( $item == substr($word, strlen($word) - strlen($item)) )
 				return true;
 
