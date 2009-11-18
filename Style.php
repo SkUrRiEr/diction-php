@@ -131,7 +131,7 @@ class Style extends Sentence {
 	 * Test if the word is an article.  This function uses docLanguage to
 	 * determine the used language.
 	 */
-	function article($word, $l) {
+	function article($word) {
 		return $this->listcmp($word, $this->article_list);
 	}
 
@@ -139,7 +139,7 @@ class Style extends Sentence {
 	 * Test if the word is a pronoun.  This function uses docLanguage to
 	 * determine the used language.
 	 */
-	function pronoun($word, $l) {
+	function pronoun($word) {
 		return $this->listcmp($word, $this->pronoun_list);
 	}
 
@@ -147,7 +147,7 @@ class Style extends Sentence {
 	 * Test if the word is an interrogative pronoun.  This function uses
 	 * docLanguage to determine the used language.
 	 */
-	function interrogativePronoun($word, $l) {
+	function interrogativePronoun($word) {
 		return $this->listcmp($word, $this->interrogativePronoun_list);
 	}
 
@@ -155,7 +155,7 @@ class Style extends Sentence {
 	 * Test if the word is an conjunction.  This function uses
 	 * docLanguage to determine the used language.
 	 */
-	function conjunction($word, $l) {
+	function conjunction($word) {
 		return $this->listcmp($word, $this->conjunction_list);
 	}
 
@@ -178,7 +178,7 @@ class Style extends Sentence {
 	 * Test if the word is an sub conjunction.  This function uses
 	 * docLanguage to determine the used language.
 	 */
-	function subConjunction($word, $l) {
+	function subConjunction($word) {
 		return $this->listcmp($word, $this->subConjunction_list);
 	}
 
@@ -186,7 +186,7 @@ class Style extends Sentence {
 	 * Test if the word is an preposition.  This function uses
 	 * docLanguage to determine the used language.
 	 */
-	function preposition($word, $l) {
+	function preposition($word) {
 		return $this->listcmp($word, $this->preposition_list);
 	}
 
@@ -194,7 +194,7 @@ class Style extends Sentence {
 	 * Test if the word is an auxiliary verb.  This function uses
 	 * docLanguage to determine the used language.
 	 */
-	function auxVerb($word, $l) {
+	function auxVerb($word) {
 		return $this->listcmp($word, $this->auxVerb_list);
 	}
 
@@ -202,7 +202,7 @@ class Style extends Sentence {
 	 * Test if the word is an 'to be' verb.  This function uses
 	 * docLanguage to determine the used language.
 	 */
-	function tobeVerb($word, $l) {
+	function tobeVerb($word) {
 		return $this->listcmp($word, $this->tobeVerb_list);
 	}
 
@@ -283,41 +283,41 @@ class Style extends Sentence {
 
 					if( $phraseEnd == 0 || ($i - $wordLength) > $phraseEnd ) {
 						/* part of speech tagging-- order matters! */
-						if( $firstWord && $this->article($wordstring, $wordLength) !== false )
+						if( $firstWord && $this->article($wordstring) !== false )
 						       	$this->beginArticles++;
-						else if( $this->pronoun($wordstring, $wordLength) !== false ) {
+						else if( $this->pronoun($wordstring) !== false ) {
 							$this->pronouns++;
 
 							if( $firstWord )
 								$this->beginPronouns++;
-						} else if( $this->interrogativePronoun($wordstring, $wordLength) !== false ) {
+						} else if( $this->interrogativePronoun($wordstring) !== false ) {
 							$this->interrogativePronouns++;
 
 							if( $firstWord )
 								$this->beginInterrogativePronouns++;
-						} else if( $this->conjunction($wordstring, $wordLength) !== false ) {
+						} else if( $this->conjunction($wordstring) !== false ) {
 							$this->conjunctions++;
 
 							if( $firstWord )
 								$this->beginConjunctions++;
-						} else if( ($len = $this->subConjunction($wordstring, $wordLength)) !== false ) {
+						} else if( ($len = $this->subConjunction($wordstring)) !== false ) {
 							$phraseEnd = $i - $wordLength + $len;
 
 							$this->subConjunctions++;
 
 							if( $firstWord )
 								$this->beginSubConjunctions++;
-						} else if( ($len = $this->preposition($wordstring, $wordLength)) !== false ) {
+						} else if( ($len = $this->preposition($wordstring)) !== false ) {
 							$phraseEnd = $i - $wordLength + $len;
 
 							$this->prepositions++;
 
 							if( $firstWord )
 								$this->beginPrepositions++;
-						} else if( $this->tobeVerb($wordstring, $wordLength) !== false ) {
+						} else if( $this->tobeVerb($wordstring) !== false ) {
 							$passive = true;
 							$this->tobeVerbs++;
-						} else if( ($len = $this->auxVerb($wordstring, $wordLength)) !== false ) {
+						} else if( ($len = $this->auxVerb($wordstring)) !== false ) {
 							$phraseEnd = $i - $wordLength + $len;
 
 							$this->auxVerbs++;
