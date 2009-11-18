@@ -14,10 +14,10 @@ backup:
 sentence.diff: sentence_c.txt sentence_php.txt
 	$(DIFF) sentence_c.txt sentence_php.txt -u > sentence.diff
 
-sentence_c.txt: sentence input.txt
+sentence_c.txt: input.txt sentence
 	./sentence > sentence_c.txt
 
-sentence_php.txt: ../Sentence.php sentence.php input.txt
+sentence_php.txt: input.txt ../Sentence.php sentence.php
 	$(PHP) sentence.php > sentence_php.txt
 
 sentence: sentence.c
@@ -26,10 +26,10 @@ sentence: sentence.c
 style.diff: style_c.txt style_php.txt
 	$(DIFF) style_c.txt style_php.txt -u > style.diff
 
-style_c.txt: style input.txt
+style_c.txt: input.txt style
 	./style > style_c.txt
 
-style_php.txt: ../Style.php ../Sentence.php style.php input.txt
+style_php.txt: input.txt ../Style.php ../Sentence.php style.php
 	$(PHP) style.php > style_php.txt
 
 style: style.c
