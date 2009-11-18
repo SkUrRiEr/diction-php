@@ -236,7 +236,6 @@ class Style extends Sentence {
 		$innumber = false;
 		$wordLength = -1;
 		$sentWords = 0;
-		$sentLetters = 0;
 		$passive = false;
 		$nom = 0;
 
@@ -322,13 +321,11 @@ class Style extends Sentence {
 				} else {
 					$wordLength++;
 					$this->characters++;
-					$sentLetters++;
 				}
 			} else if( $innumber ) {
 				if( ctype_digit($s) || (($s == "." || $s == ",") && ctype_digit($str[$i + 1])) ) {
 					$wordLength++;
 					$this->characters++;
-					$sentLetters++;
 				} else {
 					$innumber = false;
 					$this->syllables++;
@@ -340,14 +337,12 @@ class Style extends Sentence {
 					$inword = true;
 					$wordLength = 1;
 					$this->characters++;
-					$sentLetters++;
 				} else if( ctype_digit($s) ) {
 					$this->words++;
 					$sentWords++;
 					$innumber = true;
 					$wordLength = 1;
 					$this->characters++;
-					$sentLetters++;
 				}
 			}
 		}
