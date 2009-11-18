@@ -60,11 +60,11 @@ class Style extends Sentence {
 	static $pronoun_list;
 	static $interrogativePronoun_list;
 	static $conjunction_list;
-	static $nominalization_list;
 	static $subConjunction_list;
 	static $preposition_list;
 	static $auxVerb_list;
 	static $tobeVerb_list;
+	static $nominalization_list;
 
 	var $lengths;
 
@@ -77,8 +77,6 @@ class Style extends Sentence {
 
 		$this->conjunction_list = array("and", "but", "or", "yet", "nor");
 
-		$this->nominalization_list = array("tion", "ment", "ence", "ance");
-
 		$this->subConjunction_list = array("after", "because", "lest", "till", "'til", "although", "before", "now that", "unless", "as", "even if", "provided that", "provided", "until", "as if", "even though", "since", "as long as", "so that", "whenever", "as much as", "if", "than", "as soon as", "inasmuch", "in order that", "though", "while");
 
 		$this->preposition_list = array("aboard", "about", "above", "according to", "across from", "after", "against", "alongside", "alongside of", "along with", "amid", "among", "apart from", "around", "aside from", "at", "away from", "back of", "because of", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond", "but", "by means of", "concerning", "considering", "despite", "down", "down from", "during", "except", "except for", "excepting for", "from among", "from between", "from under", "in addition to", "in behalf of", "in front of", "in place of", "in regard to", "inside of", "inside", "in spite of", "instead of", "into", "like", "near to", "off", "on account of", "on behalf of", "onto", "on top of", "on", "opposite", "out of", "out", "outside", "outside of", "over to", "over", "owing to", "past", "prior to", "regarding", "round about", "round", "since", "subsequent to", "together", "with", "throughout", "through", "till", "toward", "under", "underneath", "until", "unto", "up", "up to", "upon", "with", "within", "without", "across", "along", "by", "of", "in", "to", "near", "of", "from");
@@ -86,6 +84,8 @@ class Style extends Sentence {
 		$this->auxVerb_list = array("will", "shall", "cannot", "may", "need to", "would", "should", "could", "might", "must", "ought", "ought to", "can't", "can");
 
 		$this->tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
+
+		$this->nominalization_list = array("tion", "ment", "ence", "ance");
 
 		$this->lengths = array();
 
@@ -160,21 +160,6 @@ class Style extends Sentence {
 	}
 
 	/**
-	 * Test if the word is a nominalization.  This function uses
-	 * docLanguage to determine the used language.
-	 */
-	function nominalization($word, $l) {
-		if( $l < 7 )
-		       	return 0;
-
-		foreach($this->nominalization_list as $item)
-			if( $item == substr($word, strlen($word) - strlen($item)) )
-				return true;
-
-		return false;
-	}
-
-	/**
 	 * Test if the word is an sub conjunction.  This function uses
 	 * docLanguage to determine the used language.
 	 */
@@ -204,6 +189,21 @@ class Style extends Sentence {
 	 */
 	function tobeVerb($word) {
 		return $this->listcmp($word, $this->tobeVerb_list);
+	}
+
+	/**
+	 * Test if the word is a nominalization.  This function uses
+	 * docLanguage to determine the used language.
+	 */
+	function nominalization($word, $l) {
+		if( $l < 7 )
+		       	return 0;
+
+		foreach($this->nominalization_list as $item)
+			if( $item == substr($word, strlen($word) - strlen($item)) )
+				return true;
+
+		return false;
 	}
 
 	function vowel($c) {
