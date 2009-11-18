@@ -1,0 +1,6 @@
+ TODO list
+===========
+
+ * Split paragraph processing out of processString() in Sentence.php
+ * Rename files to reflect their purpose.
+ * Port diction.

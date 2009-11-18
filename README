@@ -1,0 +1,28 @@
+ Diction-PHP
+=============
+
+This is a port and upgrade of the original GNU diction to PHP.
+
+GNU diction can be found here:
+
+http://www.gnu.org/software/diction/diction.htmlhttp://www.gnu.org/software/diction/diction.html
+
+ Major Changes From GNU Diction
+--------------------------------
+
+ * Ported to PHP
+ * Removed all C-isms and replaced them with equivalent (and simpler) PHP code
+ * Split functionality out into classes.
+ * Eliminated standalone functionality to make this a set of classes for text
+   analysis, rather than a set of programs for the same.
+ * Cleaned up unused variables, renamed methods to reflect their purpose, etc.
+
+ Future Goals
+--------------
+
+ * Fix any remaining inconsistencies between the original code and the PHP port
+   (see tests directory)
+ * Port the diction functionality also.
+ * Allow all stages of the processing to be enhanced through PHP's OO features.
+ * Re-format code into a standard PHP style
+ * Submit to PEAR.
