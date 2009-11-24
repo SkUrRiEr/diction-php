@@ -1,8 +1,9 @@
 <?php
 
 include_once("../Style.php");
+include_once("../LangEN.php");
 
-$cls = new Style();
+$cls = new Style(new LangEN());
 
 $cls->processString(file_get_contents("input.txt"));
 

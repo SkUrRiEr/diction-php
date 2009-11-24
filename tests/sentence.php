@@ -1,6 +1,7 @@
 <?php
 
 include_once("../Sentence.php");
+include_once("../LangEN.php");
 
 class Test extends Sentence {
 	function processSentence($string, $length, $line) {
@@ -8,7 +9,7 @@ class Test extends Sentence {
 	}
 }
 
-$s = new Test();
+$s = new Test(new LangEN());
 
 $s->processString(file_get_contents("input.txt"));
 
