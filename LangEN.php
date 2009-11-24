@@ -50,7 +50,10 @@ class LangEN extends Lang {
 	}
 
 	function vowel($c) {
-		return ($c=='a' || $c=='ä' || $c=='e' || $c=='i' || $c=='o' || $c=='ö' || $c=='u' || $c=='ü' ||	$c=='ë' || $c=='é' || $c=='è' || $c=='à' || $c=='i' || $c=='ï' || $c=='y');
+		if( $c == "y" )
+			return false;
+
+		return parent::vowel($c);
 	}
 
 	function syllables($s, $l) {
