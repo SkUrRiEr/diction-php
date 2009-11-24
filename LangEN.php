@@ -44,6 +44,25 @@ class LangEN extends Lang {
 	var $tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
 
 	var $nominalization_list = array("tion", "ment", "ence", "ance");
+
+	function syllables($s, $l) {
+		$count = 0;
+
+		if( $l >= 2 && preg_match("/ed$/", $s) )
+			$l -= 2;
+
+		for( $i = 0; $l > 0; $i++, $l-- )
+			if ($l >= 2 && $this->vowel($s[$i]) && !$this->vowel($s[$i + 1])) {
+				$count++;
+				$i++;
+				$l--;
+			}
+
+		if( $count == 0 )
+			return 1;
+
+		return $count;
+	}
 }
 
 ?>

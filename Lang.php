@@ -29,6 +29,8 @@ abstract class Lang {
 	var $auxVerb_list;
 	var $tobeVerb_list;
 	var $nominalization_list;
+
+	abstract function syllables($s, $l);
 }
 
 ?>
