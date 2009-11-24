@@ -25,62 +25,9 @@
  */
 
 abstract class Sentence {
-	static $abbreviations;
+	public static $abbreviations = array("ch", "Ch", "ckts", "dB", "Dept", "dept", "Depts", "depts", "Dr", "Drs", "Eq", "eq", "etc", "et al", "Fig", "fig", "Figs", "figs", "ft", "0 in", "1 in", "2 in", "3 in", "4 in", "5 in", "6 in", "7 in", "8 in", "9 in", "Inc", "Jr", "jr", "mi", "Mr", "Mrs", "Ms", "No", "no", "Nos", "nos", "Ph", "Ref", "ref", "Refs", "refs", "St", "vs", "yr");
 
 	abstract function processSentence($string, $length, $line);
-
-	function __construct() {
-		$this->abbreviations = array(
-			"ch",
-			"Ch",
-			"ckts",
-			"dB",
-			"Dept",
-			"dept",
-			"Depts",
-			"depts",
-			"Dr",
-			"Drs",
-			"Eq",
-			"eq",
-			"etc",
-			"et al",
-			"Fig",
-			"fig",
-			"Figs",
-			"figs",
-			"ft",
-			"0 in",
-			"1 in",
-			"2 in",
-			"3 in",
-			"4 in",
-			"5 in",
-			"6 in",
-			"7 in",
-			"8 in",
-			"9 in",
-			"Inc",
-			"Jr",
-			"jr",
-			"mi",
-			"Mr",
-			"Mrs",
-			"Ms",
-			"No",
-			"no",
-			"Nos",
-			"nos",
-			"Ph",
-			"Ref",
-			"ref",
-			"Refs",
-			"refs",
-			"St",
-			"vs",
-			"yr",
-		);
-	}
 
 	function endingInPossessiveS($s, $length) {
 		return ($length >= 3 && substr($s, $length - 2, 2) == "'s");
@@ -93,7 +40,7 @@ abstract class Sentence {
 		if( $this->endingInPossessiveS($s, $length) )
 			return false;
 
-		foreach($this->abbreviations as $abbrev) {
+		foreach(Sentence::$abbreviations as $abbrev) {
 			$aLength = strlen($abbrev);
 
 			if( $aLength < $length ) {
