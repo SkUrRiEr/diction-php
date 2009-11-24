@@ -77,6 +77,8 @@ class Style extends Sentence {
 	public static $nominalization_list = array("tion", "ment", "ence", "ance");
 
 	function __construct() {
+		parent::__construct();
+
 		$this->lengths = array();
 
 		$this->characters = 0;
