@@ -49,13 +49,6 @@ class LangEN extends Lang {
 		$this->abbreviations = array("ch", "Ch", "ckts", "dB", "Dept", "dept", "Depts", "depts", "Dr", "Drs", "Eq", "eq", "etc", "et al", "Fig", "fig", "Figs", "figs", "ft", "0 in", "1 in", "2 in", "3 in", "4 in", "5 in", "6 in", "7 in", "8 in", "9 in", "Inc", "Jr", "jr", "mi", "Mr", "Mrs", "Ms", "No", "no", "Nos", "nos", "Ph", "Ref", "ref", "Refs", "refs", "St", "vs", "yr");
 	}
 
-	function vowel($c) {
-		if( $c == "y" )
-			return false;
-
-		return parent::vowel($c);
-	}
-
 	function syllables($s, $l) {
 		$count = 0;
 
