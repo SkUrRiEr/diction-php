@@ -1,0 +1,87 @@
+ Hacking
+=========
+
+ File Orgainisation
+--------------------
+
+Sentence.php contains most of the original sentence.c code.
+Style.php contains most of the original style.c code.
+
+DictionBase.php contains support code for language pack implementation.
+
+Lang.php contains base language pack code.
+
+LangEN.php contains English specific code.
+
+ Processing flowchart
+----------------------
+
+   Block of text
+         |
+         V
+ Sentence::process()
+         |
+         V
+ Separate Sentences
+  |  |  |  |  |  |   each sentence is passed, in turn, to
+  V  V  V  V  V  V
+ Sentence::processSentence()
+
+Style.php overrides Sentence.php:processSentence() and performs some simple style checks on each sentence passed. The diction code will also override processSentence().
+
+Paragraphs are signalled by passing an empty string to Sentence::processSentence().
+
+Eventually, there will be another step where the block of text is split into paragraphs, which are then processed.
+
+ Language Packs
+----------------
+
+Any code or data that is specific to a particular language is to be stored in a class called Lang?? (where the ?? is the language code, e.g. EN for English) in a file of the same name. These classes must extend the Lang base class and define all the parameters and methods that aren't specified in the Lang base class.
+
+Language packs will eventually be provided for German ("DE") and Dutch ("NL") using the text present in the original diction software.
+
+ Test Cases
+------------
+
+The test cases are to test all *completed*, non-obviously-correct code within the library against the original functionality of Style / Diction.
+
+What this means is that they'll be used to directly compare the *values* outputted by the original C implementation and the PHP library, not any of the intermediate steps.
+
+For example, the style test case produces a report detailing all the values gleaned from the style algorithm, despite the differences in this algorithm between the original code and the PHP library. An example of one of these differences is the "lengths" variable output. The C code produces a contiguous set of sentence lengths, including zero values, while the PHP implementation only produces the actual values. The test case's output omits the zero values from the original implementation's code.
+
+ Known Test Case Errors
+------------------------
+
+GNU Diction / Style has several bugs, (which is why this code was written in the first place, but I digress) as such, these two implementations *will* diverge over time as these bugs are eliminated in the PHP version.
+
+Whilst I will try to apply similar fixes for the original code (and send these upstream where possible) I expect the test cases to eventually become irrelevant.
+
+An example of divergence is that the two implementations count the syllables of some words incorrectly. The PHP implementation gets some right, and the C implementation gets others right. I'm not yet sure how to fix this. E.g. "Unlike" is counted by the PHP implentation as having 2 syllables, while the C implementation counts it as having 1. In this case the PHP implementation is correct, however I'm not sure why.
+
+ Coding Style
+--------------
+
+I use a modified version of the Linux Kernel style.
+
+Essentially, opening braces are *never* on their own line, and statements that follow closing braces and are related to that block are on the same line as the closing brace.
+
+E.g.
+
+Correct:
+if( $this->param ) {
+	$this->do_stuff($param);
+	$this->param = false;
+} else {
+	$this->do_other_stuff();
+	$this->param = true;
+}
+
+If a block only has a single statement inside it, omit the braces.
+
+Spaces around operators are mandatory. Spaces inside brackets for control statements and functions as in the example.
+
+Statements are on single lines where possible, even if this would wrap, unless it would drastically impact readability.
+
+8 column tabs, not 8 spaces, and minimal trailing whitespace.
+
+Oh, and try to make the test cases pass between commits.
