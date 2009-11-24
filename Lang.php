@@ -20,6 +20,15 @@
  */
 
 abstract class Lang {
+	var $article_list;
+	var $pronoun_list;
+	var $interrogativePronoun_list;
+	var $conjunction_list;
+	var $subConjunction_list;
+	var $preposition_list;
+	var $auxVerb_list;
+	var $tobeVerb_list;
+	var $nominalization_list;
 }
 
 ?>

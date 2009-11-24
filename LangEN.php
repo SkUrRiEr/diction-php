@@ -4,6 +4,11 @@
  *
  * Copyright 2009 Julian Calaby <julian.calaby@gmail.com>
  *
+ * This file is based upon style.c from GNU Diction.
+ * 
+ * GNU Diction is GNU software, copyright 1997-2007
+ * Michael Haardt <michael@moria.de>.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation; either version 3 of the License, or (at your
@@ -22,6 +27,23 @@
 include_once("Lang.php");
 
 class LangEN extends Lang {
+	var $article_list = array("the", "a", "an");
+
+	var $pronoun_list = array("i", "me", "we", "us", "you", "he", "him", "she", "her", "it", "they", "them", "thou", "thee", "ye", "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves", "oneself", "my", "mine", "his", "hers", "yours", "ours", "theirs", "its", "our", "that", "their", "these", "this", "those", "your");
+
+	var $interrogativePronoun_list = array("why", "who", "what", "whom", "when", "where", "how");
+
+	var $conjunction_list = array("and", "but", "or", "yet", "nor");
+
+	var $subConjunction_list = array("after", "because", "lest", "till", "'til", "although", "before", "now that", "unless", "as", "even if", "provided that", "provided", "until", "as if", "even though", "since", "as long as", "so that", "whenever", "as much as", "if", "than", "as soon as", "inasmuch", "in order that", "though", "while");
+
+	var $preposition_list = array("aboard", "about", "above", "according to", "across from", "after", "against", "alongside", "alongside of", "along with", "amid", "among", "apart from", "around", "aside from", "at", "away from", "back of", "because of", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond", "but", "by means of", "concerning", "considering", "despite", "down", "down from", "during", "except", "except for", "excepting for", "from among", "from between", "from under", "in addition to", "in behalf of", "in front of", "in place of", "in regard to", "inside of", "inside", "in spite of", "instead of", "into", "like", "near to", "off", "on account of", "on behalf of", "onto", "on top of", "on", "opposite", "out of", "out", "outside", "outside of", "over to", "over", "owing to", "past", "prior to", "regarding", "round about", "round", "since", "subsequent to", "together", "with", "throughout", "through", "till", "toward", "under", "underneath", "until", "unto", "up", "up to", "upon", "with", "within", "without", "across", "along", "by", "of", "in", "to", "near", "of", "from");
+
+	var $auxVerb_list = array("will", "shall", "cannot", "may", "need to", "would", "should", "could", "might", "must", "ought", "ought to", "can't", "can");
+
+	var $tobeVerb_list = array("be", "being", "was", "were", "been", "are", "is");
+
+	var $nominalization_list = array("tion", "ment", "ence", "ance");
 }
 
 ?>
