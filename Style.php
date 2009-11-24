@@ -180,10 +180,6 @@ class Style extends Sentence {
 		return false;
 	}
 
-	function vowel($c) {
-		return ($c=='a' || $c=='ä' || $c=='e' || $c=='i' || $c=='o' || $c=='ö' || $c=='u' || $c=='ü' ||	$c=='ë' || $c=='é' || $c=='è' || $c=='à' || $c=='i' || $c=='ï' || $c=='y');
-	}
-
 	function syllables($s, $l) {
 		return $this->lang->syllables($s, $l);
 	}
