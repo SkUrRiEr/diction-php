@@ -24,7 +24,7 @@ class DictionBase {
 
 	function __construct($lang = null) {
 		if( $lang == null ) {
-			include_once("LangEN.php");
+			require_once("LangEN.php");
 
 			$lang = new LangEN();
 		}

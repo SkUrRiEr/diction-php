@@ -1,7 +1,7 @@
 <?php
 
-include_once("../Style.php");
-include_once("../LangEN.php");
+require_once("../Style.php");
+require_once("../LangEN.php");
 
 $cls = new Style(new LangEN());
 

@@ -24,7 +24,7 @@
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-include_once("DictionBase.php");
+require_once("DictionBase.php");
 
 abstract class Sentence extends DictionBase {
 	abstract function processSentence($string, $length, $line);

@@ -1,7 +1,7 @@
 <?php
 
-include_once("../Sentence.php");
-include_once("../LangEN.php");
+require_once("../Sentence.php");
+require_once("../LangEN.php");
 
 class Test extends Sentence {
 	function processSentence($string, $length, $line) {

@@ -24,7 +24,7 @@
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-include_once("Sentence.php");
+require_once("Sentence.php");
 
 class Style extends Sentence {
 	var $characters;

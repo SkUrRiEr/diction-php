@@ -24,7 +24,7 @@
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-include_once("Style.php");
+require_once("Style.php");
 
 class Readability extends Style {
 	function kincaid() {
