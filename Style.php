@@ -58,8 +58,8 @@ class Style extends Sentence {
 
 	var $lengths;
 
-	function __construct() {
-		parent::__construct();
+	function __construct($lang = null) {
+		parent::__construct($lang);
 
 		$this->lengths = array();
 
