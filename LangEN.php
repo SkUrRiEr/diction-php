@@ -1,6 +1,6 @@
 <?php
 
-/* DictionBase.php
+/* LangEN.php
  *
  * Copyright 2009 Julian Calaby <julian.calaby@gmail.com>
  *
@@ -19,22 +19,9 @@
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-class DictionBase {
-	var $lang;
+include_once("Lang.php");
 
-	function __construct($lang = null) {
-		if( $lang == null ) {
-			include_once("LangEN.php");
-
-			$lang = new LangEN();
-		}
-
-		$this->setLang($lang);
-	}
-
-	function setLang($lang) {
-		$this->lang = $lang;
-	}
+class LangEN extends Lang {
 }
 
 ?>
