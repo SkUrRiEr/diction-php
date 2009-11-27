@@ -4,3 +4,4 @@
  * Split paragraph processing out of processString() in Sentence.php
  * Rename files to reflect their purpose.
  * Port diction.
+ * Dupe support for additional languages from original code.
