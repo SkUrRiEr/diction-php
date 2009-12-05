@@ -33,7 +33,9 @@ abstract class Sentence extends DictionBase {
 		return ($length >= 3 && substr($s, $length - 2, 2) == "'s");
 	}
 
-	function endingInAbbrev($s, $length) {
+	function endingInAbbrev($s) {
+		$length = strlen($s);
+
 		if( !ctype_alpha($s[$length - 1]) )
 			return false;
 
@@ -119,7 +121,7 @@ abstract class Sentence extends DictionBase {
 						$sent = "";
 						$inWhiteSpace = false;
 						$inSentence = false;
-					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent, strlen($sent))) ) {
+					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) {
 						/* end of sentence */
 						if( $inWhiteSpace )
 							$sent = substr($sent, 0, strlen($sent) - 1);
