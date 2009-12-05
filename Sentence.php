@@ -36,28 +36,26 @@ abstract class Sentence extends DictionBase {
 	function endingInAbbrev($s) {
 		$length = strlen($s);
 
+		if( $length == 1 )
+			return true;
+
 		if( !ctype_alpha($s[$length - 1]) )
 			return false;
 
 		if( $this->endingInPossessiveS($s, $length) )
 			return false;
 
+		if( !ctype_alpha($s[$length - 2]) )
+			return true;
+
 		foreach($this->lang->abbreviations as $abbrev) {
 			$aLength = strlen($abbrev);
 
 			if( $aLength < $length ) {
-				if( !ctype_alpha($s[$length - 2]) )
-					return true;
-
 				if( !ctype_alpha($s[$length - $aLength - 1]) && substr($s, $length - $aLength, $aLength) == $abbrev )
 					return true;
-			} else {
-				if( $length == 1 )
-					return true;
-
-				if( $s == $abbrev )
-					return true;
-			}
+			} else if( $s == $abbrev )
+				return true;
 		}
 
 		return false;
