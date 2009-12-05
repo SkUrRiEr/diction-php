@@ -112,7 +112,7 @@ abstract class Sentence extends DictionBase {
 						$inWhiteSpace = false;
 						$beginLine = $line;
 						$inSentence = false;
-					} else if( preg_match("/\.\.\.(.)$/", $sent, $regs) && ($c == -1 || ctype_space($c)) ) {
+					} else if( preg_match("/\.\.\..$/", $sent) && ($c == -1 || ctype_space($c)) ) {
 						/* ending ellipsis */
 						if( $inWhiteSpace ) {
 							$length--;
