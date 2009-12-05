@@ -63,7 +63,6 @@ abstract class Sentence extends DictionBase {
 
 	function processString($in) {
 		$sent = "";
-		$length = 0;
 		$capacity = 128;
 		$inSentence = false;
 		$inWhiteSpace = false;
@@ -83,16 +82,14 @@ abstract class Sentence extends DictionBase {
 			if($oc == "\n")
 				$line++;
 
-			if($length != 0) {
+			if($sent != "") {
 				if(ctype_space($oc)) {
 					if(!$inWhiteSpace) {
 						$sent .= " ";
-						$length++;
 						$inWhiteSpace = true;
 					}
 				} else {
 					$sent .= $oc;
-					$length++;
 
 					if(ctype_alpha($oc))
 						$inSentence = true;
@@ -104,41 +101,32 @@ abstract class Sentence extends DictionBase {
 						$sent = $regs[1];
 
 						if( $inSentence )
-							$this->processSentence($sent, $length - 3, $beginLine);
+							$this->processSentence($sent, strlen($sent), $beginLine);
 
 						$sent = "...";
-						$length = 3;
 						$inParagraph = false;
 						$inWhiteSpace = false;
 						$beginLine = $line;
 						$inSentence = false;
 					} else if( preg_match("/\.\.\..$/", $sent) && ($c == -1 || ctype_space($c)) ) {
 						/* ending ellipsis */
-						if( $inWhiteSpace ) {
-							$length--;
-
-							$sent = substr($sent, 0, $length);
-						}
+						if( $inWhiteSpace )
+							$sent = substr($sent, 0, strlen($sent) - 1);
 
 						if( $inSentence )
-							$this->processSentence($sent, $length, $beginLine);
+							$this->processSentence($sent, strlen($sent), $beginLine);
 
 						$sent = "";
-						$length = 0;
 						$inWhiteSpace = false;
 						$inSentence = false;
-					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent, $length)) ) {
+					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent, strlen($sent))) ) {
 						/* end of sentence */
-						if( $inWhiteSpace ) {
-							$length--;
-
-							$sent = substr($sent, 0, $length);
-						}
+						if( $inWhiteSpace )
+							$sent = substr($sent, 0, strlen($sent) - 1);
 
 						if( $inSentence )
-							$this->processSentence($sent, $length, $beginLine);
+							$this->processSentence($sent, strlen($sent), $beginLine);
 						$sent = "";
-						$length = 0;
 						$inWhiteSpace = false;
 						$inSentence = false;
 					} else
@@ -147,7 +135,6 @@ abstract class Sentence extends DictionBase {
 				}
 			} else if( ctype_upper($oc) ) {
 				$inParagraph = false;
-				$length++;
 				$sent .= $oc;
 				$inWhiteSpace = false;
 				$beginLine = $line;
