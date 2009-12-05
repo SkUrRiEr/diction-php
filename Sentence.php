@@ -27,7 +27,7 @@
 require_once("DictionBase.php");
 
 abstract class Sentence extends DictionBase {
-	abstract function processSentence($string, $length, $line);
+	abstract function processSentence($string, $line);
 
 	function endingInPossessiveS($s, $length) {
 		return ($length >= 3 && substr($s, $length - 2, 2) == "'s");
@@ -101,7 +101,7 @@ abstract class Sentence extends DictionBase {
 						$sent = $regs[1];
 
 						if( $inSentence )
-							$this->processSentence($sent, strlen($sent), $beginLine);
+							$this->processSentence($sent, $beginLine);
 
 						$sent = "...";
 						$inParagraph = false;
@@ -114,7 +114,7 @@ abstract class Sentence extends DictionBase {
 							$sent = substr($sent, 0, strlen($sent) - 1);
 
 						if( $inSentence )
-							$this->processSentence($sent, strlen($sent), $beginLine);
+							$this->processSentence($sent, $beginLine);
 
 						$sent = "";
 						$inWhiteSpace = false;
@@ -125,7 +125,7 @@ abstract class Sentence extends DictionBase {
 							$sent = substr($sent, 0, strlen($sent) - 1);
 
 						if( $inSentence )
-							$this->processSentence($sent, strlen($sent), $beginLine);
+							$this->processSentence($sent, $beginLine);
 						$sent = "";
 						$inWhiteSpace = false;
 						$inSentence = false;
@@ -140,7 +140,7 @@ abstract class Sentence extends DictionBase {
 				$beginLine = $line;
 				$inSentence = true;
 			} else if( !$inParagraph && $oc == "\n" && $c == "\n" ) {
-				$this->processSentence("", 0, $line);
+				$this->processSentence("", $line);
 
 				$inParagraph = true;
 			}
@@ -150,7 +150,7 @@ abstract class Sentence extends DictionBase {
 		}
 
 		if( !$inParagraph )
-			$this->processSentence("", 0, $line);
+			$this->processSentence("", $line);
 	}
 }
 

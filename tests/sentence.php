@@ -4,8 +4,8 @@ require_once("../Sentence.php");
 require_once("../LangEN.php");
 
 class Test extends Sentence {
-	function processSentence($string, $length, $line) {
-		echo "Process: \"".$string."\" (Length: ".$length.") @Line: ".$line."\n";
+	function processSentence($string, $line) {
+		echo "Process: \"".$string."\" (Length: ".strlen($string).") @Line: ".$line."\n";
 	}
 }
 

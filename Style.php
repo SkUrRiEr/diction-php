@@ -195,7 +195,7 @@ class Style extends Sentence {
 	 * @param str sentence
 	 * @param length its length
 	 */
-	function processSentence($str, $length, $line) {
+	function processSentence($str, $line) {
 		$firstWord = true;
 		$inword = false;
 		$innumber = false;
@@ -203,17 +203,17 @@ class Style extends Sentence {
 		$sentWords = 0;
 		$passive = false;
 
-		if($length == 0) {
+		if($str == "") {
 			$this->paragraphs++;
 			return;
 		}
 
 		assert($str != null);
-		assert($length >= 2);
+		assert(strlen($str)>= 2);
 		
 		$phraseEnd = 0;
 
-		for( $i = 0; $i < $length; $i++ ) {
+		for( $i = 0; $i < strlen($str); $i++ ) {
 			$s = $str[$i];
 			
 			if( $inword ) {
@@ -321,7 +321,7 @@ class Style extends Sentence {
 			$this->longestLength = $sentWords;
 		}
 
-		if( $str[$length - 1] == '?' )
+		if( $str[strlen($str) - 1] == '?' )
 			$this->questions++;
 
 		$this->lengths[$sentWords]++;
