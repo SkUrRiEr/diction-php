@@ -63,7 +63,6 @@ abstract class Sentence extends DictionBase {
 
 	function processString($in) {
 		$sent = "";
-		$capacity = 128;
 		$inSentence = false;
 		$inWhiteSpace = false;
 		$inParagraph = false;
