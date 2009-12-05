@@ -217,7 +217,7 @@ class Style extends Sentence {
 			$s = $str[$i];
 			
 			if( $inword ) {
-				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossessiveS($str, $i + 2) ) {
+				if( !ctype_alpha($s) && $s != '-' && !$this->endingInPossessiveS(substr($str, 0, $i + 2)) ) {
 					$word = strtolower(substr($str, $i - $wordLength, $wordLength));
 					$wordstring = strtolower(substr($str, $i - $wordLength));
 

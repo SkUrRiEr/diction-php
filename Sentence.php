@@ -29,8 +29,8 @@ require_once("DictionBase.php");
 abstract class Sentence extends DictionBase {
 	abstract function processSentence($string, $line);
 
-	function endingInPossessiveS($s, $length) {
-		return ($length >= 3 && substr($s, $length - 2, 2) == "'s");
+	function endingInPossessiveS($s) {
+		return (strlen($s) > 2 && substr($s, -2) == "'s");
 	}
 
 	function endingInAbbrev($s) {
@@ -42,7 +42,7 @@ abstract class Sentence extends DictionBase {
 		if( !ctype_alpha($s[$length - 1]) )
 			return false;
 
-		if( $this->endingInPossessiveS($s, $length) )
+		if( $this->endingInPossessiveS($s) )
 			return false;
 
 		if( !ctype_alpha($s[$length - 2]) )
