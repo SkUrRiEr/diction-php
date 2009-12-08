@@ -280,12 +280,17 @@ void process(const char *s, size_t len, const char *file, int line) {
 
 int main(int argc, char *argv[]) /*{{{*/
 {
+	char *filename = "input.txt";
 	FILE *fp;
-	if ((fp=fopen("input.txt","r"))==(FILE*)0) 
-      fprintf(stderr,_("style: Opening `%s' failed (%s).\n"),"input.txt",strerror(errno));
+
+	if( argc > 1 )
+		filename = argv[1];
+
+	if ((fp=fopen(filename,"r"))==(FILE*)0) 
+      fprintf(stderr,_("style: Opening `%s' failed (%s).\n"),filename,strerror(errno));
     else
     {
-      sentence("style",fp,"input.txt",process,"en");
+      sentence("style",fp,filename,process,"en");
       fclose(fp);
     }
     return 0;

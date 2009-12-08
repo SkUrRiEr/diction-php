@@ -11,6 +11,11 @@ class Test extends Sentence {
 
 $s = new Test(new LangEN());
 
-$s->processString(file_get_contents("input.txt"));
+$filename = "input.txt";
+
+if( $_SERVER["argc"] > 1 )
+	$filename = $_SERVER["argv"][1];
+
+$s->processString(file_get_contents($filename));
 
 ?>

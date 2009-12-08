@@ -5,7 +5,12 @@ require_once("../LangEN.php");
 
 $cls = new Style(new LangEN());
 
-$cls->processString(file_get_contents("input.txt"));
+$filename = "input.txt";
+
+if( $_SERVER["argc"] > 1 )
+	$filename = $_SERVER["argv"][1];
+
+$cls->processString(file_get_contents($filename));
 
 echo "characters: ".$cls->characters."\n";
 echo "syllables: ".$cls->syllables."\n";
