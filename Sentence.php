@@ -93,9 +93,9 @@ abstract class Sentence extends DictionBase {
 					if(ctype_alpha($oc))
 						$inSentence = true;
 
-					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) )
-						$inWhiteSpace = false;
-					else if( preg_match("/^(.*[^ ])\.\.\.$/", $sent, $regs) && ($c == -1 || ctype_space($c)) ) {
+					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) {
+						/* omission ellipsis */
+					} else if( preg_match("/^(.*[^ ])\.\.\.$/", $sent, $regs) && ($c == -1 || ctype_space($c)) ) {
 						/* beginning ellipsis */
 						$sent = $regs[1];
 
@@ -104,7 +104,6 @@ abstract class Sentence extends DictionBase {
 
 						$sent = "...";
 						$inParagraph = false;
-						$inWhiteSpace = false;
 						$beginLine = $line;
 						$inSentence = false;
 					} else if( preg_match("/\.\.\..$/", $sent) && ($c == -1 || ctype_space($c)) ) {
@@ -116,7 +115,6 @@ abstract class Sentence extends DictionBase {
 							$this->processSentence($sent, $beginLine);
 
 						$sent = "";
-						$inWhiteSpace = false;
 						$inSentence = false;
 					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) {
 						/* end of sentence */
@@ -126,11 +124,10 @@ abstract class Sentence extends DictionBase {
 						if( $inSentence )
 							$this->processSentence($sent, $beginLine);
 						$sent = "";
-						$inWhiteSpace = false;
 						$inSentence = false;
-					} else
-						/* just a regular character */
-						$inWhiteSpace = false;
+					}
+
+					$inWhiteSpace = false;
 				}
 			} else if( ctype_upper($oc) ) {
 				$inParagraph = false;
