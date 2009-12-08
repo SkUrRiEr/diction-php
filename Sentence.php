@@ -108,21 +108,16 @@ abstract class Sentence extends DictionBase {
 						$inSentence = false;
 					} else if( preg_match("/\.\.\..$/", $sent) && ($c == -1 || ctype_space($c)) ) {
 						/* ending ellipsis */
-						if( $inWhiteSpace )
-							$sent = substr($sent, 0, strlen($sent) - 1);
-
 						if( $inSentence )
-							$this->processSentence($sent, $beginLine);
+							$this->processSentence(rtrim($sent), $beginLine);
 
 						$sent = "";
 						$inSentence = false;
 					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) {
 						/* end of sentence */
-						if( $inWhiteSpace )
-							$sent = substr($sent, 0, strlen($sent) - 1);
-
 						if( $inSentence )
-							$this->processSentence($sent, $beginLine);
+							$this->processSentence(rtrim($sent), $beginLine);
+
 						$sent = "";
 						$inSentence = false;
 					}
