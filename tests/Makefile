@@ -15,10 +15,10 @@ sentence.diff: sentence_c.txt sentence_php.txt
 	$(DIFF) sentence_c.txt sentence_php.txt -u > sentence.diff
 
 sentence_c.txt: input.txt sentence
-	./sentence > sentence_c.txt
+	./sentence sentence_input.txt > sentence_c.txt
 
 sentence_php.txt: input.txt ../Sentence.php ../DictionBase.php ../LangEN.php ../Lang.php sentence.php
-	$(PHP) sentence.php > sentence_php.txt
+	$(PHP) sentence.php sentence_input.txt > sentence_php.txt
 
 sentence: sentence.c
 	$(CC) -Wall sentence.c -o sentence
