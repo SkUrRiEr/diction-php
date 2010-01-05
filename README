@@ -24,6 +24,7 @@ http://www.gnu.org/software/diction/diction.html
 
  * Fix any remaining inconsistencies between the original code and the PHP port
    (see tests directory and HACKING)
+ * Fix bugs.
  * Port the diction functionality also.
  * Allow all stages of the processing to be enhanced through PHP's OO features.
  * Re-format code into a standard PHP style
