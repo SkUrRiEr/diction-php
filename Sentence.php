@@ -36,6 +36,10 @@ abstract class Sentence extends DictionBase {
 	function endingInAbbrev($s) {
 		$length = strlen($s);
 
+		$s = substr($s, 0, $length - 1);
+
+		$length--;
+
 		if( $length == 1 )
 			return true;
 
@@ -48,15 +52,9 @@ abstract class Sentence extends DictionBase {
 		if( $length > 1 && !ctype_alpha($s[$length - 2]) )
 			return true;
 
-		foreach($this->lang->abbreviations as $abbrev) {
-			$aLength = strlen($abbrev);
-
-			if( $aLength < $length ) {
-				if( !ctype_alpha($s[$length - $aLength - 1]) && substr($s, $length - $aLength, $aLength) == $abbrev )
-					return true;
-			} else if( $s == $abbrev )
+		foreach($this->lang->abbreviations as $abbrev)
+			if( substr($s, -strlen($abbrev)) == $abbrev )
 				return true;
-		}
 
 		return false;
 	}

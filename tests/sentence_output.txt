@@ -10,7 +10,6 @@
 "Even if I talk to you in quotation marks." (Length: 41) @Line: 7
 "" (Length: 0) @Line: 8
 "What's really interesting is when I start using abbreviations." (Length: 62) @Line: 9
-"Speaking of abbreviations, Dr." (Length: 30) @Line: 9
-"Matthews is especially fond of them." (Length: 36) @Line: 9
-"Not only that, but my network cable is 21 in." (Length: 45) @Line: 9
+"Speaking of abbreviations, Dr. Matthews is especially fond of them." (Length: 67) @Line: 9
+"Not only that, but my network cable is 21 in. long." (Length: 51) @Line: 9
 "" (Length: 0) @Line: 10
