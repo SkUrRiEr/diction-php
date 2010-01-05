@@ -45,7 +45,7 @@ abstract class Sentence extends DictionBase {
 		if( $this->endingInPossessiveS($s) )
 			return false;
 
-		if( !ctype_alpha($s[$length - 2]) )
+		if( $length > 1 && !ctype_alpha($s[$length - 2]) )
 			return true;
 
 		foreach($this->lang->abbreviations as $abbrev) {
