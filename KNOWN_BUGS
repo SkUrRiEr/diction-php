@@ -1,0 +1,7 @@
+ Known Bugs
+============
+
+[X] Abbreviations are incorrectly counted as the end of sentences.
+[ ] Syllables may be counted incorrectly.
+[ ] Ellipses are not handled correctly.
+[ ] Sentences that don't start with a capital letter are completely omitted.
