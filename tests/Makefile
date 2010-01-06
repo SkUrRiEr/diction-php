@@ -14,7 +14,7 @@ backup:
 sentence.diff: sentence_output.txt sentence_php.txt
 	$(DIFF) sentence_output.txt sentence_php.txt -u > sentence.diff
 
-sentence_php.txt: input.txt ../Sentence.php ../DictionBase.php ../LangEN.php ../Lang.php sentence.php
+sentence_php.txt: sentence_input.txt ../Sentence.php ../DictionBase.php ../LangEN.php ../Lang.php sentence.php
 	$(PHP) sentence.php sentence_input.txt > sentence_php.txt
 
 style.diff: style_c.txt style_php.txt
