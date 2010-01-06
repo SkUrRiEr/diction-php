@@ -105,7 +105,7 @@ abstract class Sentence extends DictionBase {
 				}
 			} else if( ctype_alpha($oc) ) {
 				$inParagraph = false;
-				$sent .= $oc;
+				$sent = $oc;
 				$inWhiteSpace = false;
 				$beginLine = $line;
 			} else if( $voc == "." && $oc == "." && $c == "." ) {
