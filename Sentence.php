@@ -67,6 +67,8 @@ abstract class Sentence extends DictionBase {
 		$line = 1;
 		$beginLine = 1;
 
+		$in = trim($in);
+
 		$voc = '\n';
 		$oc = $in[0];
 
@@ -91,11 +93,12 @@ abstract class Sentence extends DictionBase {
 					if(ctype_alpha($oc))
 						$inSentence = true;
 
-					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) {
+					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ctype_space($c) ) {
 						/* omission ellipsis */
 					} else if(
-						( preg_match("/[^ ]\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) /* ending ellipsis */
-						|| ( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) /* end of sentence */
+						$c == -1 /* end of file */
+						|| ( preg_match("/[^ ]\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) /* ending ellipsis */
+						|| ( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && (ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) /* end of sentence */
 							) {
 						if( $inSentence )
 							$this->processSentence(rtrim($sent), $beginLine);
@@ -129,7 +132,7 @@ abstract class Sentence extends DictionBase {
 		}
 
 		if( !$inParagraph )
-			$this->processSentence("", $line);
+			$this->processSentence("", $line + 1);
 	}
 }
 

@@ -18,3 +18,5 @@
 "How about sentence beginnings?" (Length: 30) @Line: 11
 "what if I miss the capital?" (Length: 27) @Line: 11
 "" (Length: 0) @Line: 12
+"This is to check the end of the ..." (Length: 35) @Line: 13
+"" (Length: 0) @Line: 14
