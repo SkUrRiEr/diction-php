@@ -14,3 +14,6 @@
 "Speaking of abbreviations, Dr. Matthews is especially fond of them." (Length: 67) @Line: 9
 "Not only that, but my network cable is 21 in. long." (Length: 51) @Line: 9
 "" (Length: 0) @Line: 10
+"How about sentence beginnings?" (Length: 30) @Line: 11
+"what if I miss the capital?" (Length: 27) @Line: 11
+"" (Length: 0) @Line: 12
