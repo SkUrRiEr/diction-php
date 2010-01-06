@@ -3,5 +3,5 @@
 
 [X] Abbreviations are incorrectly counted as the end of sentences.
 [ ] Syllables may be counted incorrectly.
-[ ] Ellipses are not handled correctly.
+[X] Ellipses are not handled correctly.
 [X] Sentences that don't start with a capital letter are completely omitted.
