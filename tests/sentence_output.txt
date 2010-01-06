@@ -1,9 +1,10 @@
 "This file is a set of sentences to confuse and test the sentence parsing code in Sentence.php." (Length: 94) @Line: 1
 "" (Length: 0) @Line: 2
 "We're going to do things like omit ... randomly." (Length: 48) @Line: 3
-"Then we'll not actually finish" (Length: 30) @Line: 3
-"... We're also going to try to do things like start sentences like this:" (Length: 72) @Line: 3
-"yes, we're using ellipses in a vain attempt to confuse it." (Length: 58) @Line: 3
+"Then we'll not actually finish..." (Length: 33) @Line: 3
+"We're also going to try to do things like start sentences like this:" (Length: 68) @Line: 3
+"...yes, we're using ellipses in a vain attempt to confuse it." (Length: 61) @Line: 3
+"This is just here to check that the ellipsis handling code works properly." (Length: 74) @Line: 3
 "" (Length: 0) @Line: 4
 "What about sentence endings then?" (Length: 33) @Line: 5
 "Surely it won't be confused by this!" (Length: 36) @Line: 5

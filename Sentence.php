@@ -93,21 +93,10 @@ abstract class Sentence extends DictionBase {
 
 					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) {
 						/* omission ellipsis */
-					} else if( preg_match("/^(.*[^ ])\.\.\.$/", $sent, $regs) && ($c == -1 || ctype_space($c)) ) {
-						/* beginning ellipsis */
-						$sent = $regs[1];
-
-						if( $inSentence )
-							$this->processSentence($sent, $beginLine);
-
-						$sent = "...";
-						$inParagraph = false;
-						$beginLine = $line;
-						$inSentence = false;
-					} else if( preg_match("/\.\.\..$/", $sent) && ($c == -1 || ctype_space($c)) ) {
+					} else if( preg_match("/[^ ]\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) {
 						/* ending ellipsis */
 						if( $inSentence )
-							$this->processSentence(rtrim($sent), $beginLine);
+							$this->processSentence($sent, $beginLine);
 
 						$sent = "";
 						$inSentence = false;
@@ -125,6 +114,12 @@ abstract class Sentence extends DictionBase {
 			} else if( ctype_alpha($oc) ) {
 				$inParagraph = false;
 				$sent .= $oc;
+				$inWhiteSpace = false;
+				$beginLine = $line;
+				$inSentence = true;
+			} else if( $voc == "." && $oc == "." && $c == "." ) {
+				$inParagraph = false;
+				$sent = "..";
 				$inWhiteSpace = false;
 				$beginLine = $line;
 				$inSentence = true;

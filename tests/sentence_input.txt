@@ -1,6 +1,6 @@
 This file is a set of sentences to confuse and test the sentence parsing code in Sentence.php.
 
-We're going to do things like omit ... randomly. Then we'll not actually finish... We're also going to try to do things like start sentences like this: ...yes, we're using ellipses in a vain attempt to confuse it.
+We're going to do things like omit ... randomly. Then we'll not actually finish... We're also going to try to do things like start sentences like this: ...yes, we're using ellipses in a vain attempt to confuse it. This is just here to check that the ellipsis handling code works properly.
 
 What about sentence endings then? Surely it won't be confused by this!
 
