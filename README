@@ -18,12 +18,11 @@ http://www.gnu.org/software/diction/diction.html
  * Eliminated standalone functionality to make this a set of classes for text
    analysis, rather than a set of programs for the same.
  * Cleaned up unused variables, renamed methods to reflect their purpose, etc.
+ * Fixed some major bugs in the sentence handling code.
 
  Future Goals
 --------------
 
- * Fix any remaining inconsistencies between the original code and the PHP port
-   (see tests directory and HACKING)
  * Fix bugs.
  * Port the diction functionality also.
  * Allow all stages of the processing to be enhanced through PHP's OO features.

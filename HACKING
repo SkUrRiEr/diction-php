@@ -55,38 +55,41 @@ using the text present in the original diction software.
  Test Cases
 ------------
 
-The test cases are to test all *completed*, non-obviously-correct code within
-the library against the original functionality of Style / Diction.
+The test cases are to test the final results from all *completed*,
+non-obviously-correct code within the library against either known good results
+(see the sentence tests) or the original functionality of Style / Diction.
 
-What this means is that they'll be used to directly compare the final *values*
-outputted by the original C implementation and the PHP library, not any of the
-intermediate steps.
+The sentence test case, due to fixing some major bugs in the original sentence
+parser, checks the functionality of the code against a set file containing a
+number of sentences to coverage test the code. (Note that complete code coverage
+has not yet been proven)
 
-For example, the style test case produces a report detailing all the values
-gleaned from the style algorithm, despite the differences in this algorithm
-between the original code and the PHP library. An example of one of these
-differences is the "lengths" variable output. The C code produces a contiguous
-set of sentence lengths, including zero values, while the PHP implementation
-only produces the actual values. The test case's output omits the zero values
-from the original implementation's code.
+The style test case produces a report detailing all the values gleaned from both
+the original C implementation and new PHP implementation of the style algorithm.
+These reports are then compared for differences. Of note is the output of the
+"lengths" variable in the reports: The C code produces a contiguous set of
+sentence lengths, including zero values, while the PHP implementation only
+produces the actual values. The test case's output omits the zero values from
+the original implementation's code so that the reports can be accurately
+compared.
 
- Known Test Case Errors
-------------------------
+The diction test case will probably work in a similar manner to the style test
+case.
 
-GNU Diction / Style has several bugs, (which is why this code was written in the
-first place, but I digress) as such, these two implementations *will* diverge
-over time as these bugs are eliminated in the PHP version.
+ Known Differences Between the PHP Implementation and C Implementation
+-----------------------------------------------------------------------
 
-Whilst I will try to apply similar fixes for the original code (and send these
-upstream where possible) I expect the test cases to eventually become
-irrelevant.
+In the sentence parser, the PHP implementation:
+ * Handles the end of the string differently.
+ * Doesn't require capital letters at the start of sentences.
+ * Handles ellipses differently.
+ * Handles abbreviations. (The C implementation has the code, but it doesn't
+   work.)
 
-An example of divergence is that the two implementations count the syllables of
-some words incorrectly. The PHP implementation gets some right, and the C
-implementation gets others right. I'm not yet sure how to fix this. E.g.
-"Unlike" is counted by the PHP implentation as having 2 syllables, while the C
-implementation counts it as having 1. In this case the PHP implementation is
-correct, however I'm not sure why.
+In the style implementation, the PHP implementation:
+ * Counts syllables differently.
+
+Please note that this list is incomplete.
 
  Coding Style
 --------------
@@ -118,4 +121,13 @@ it would drastically impact readability.
 
 8 column tabs, not 8 spaces, and minimal trailing whitespace.
 
-Oh, and try to make the test cases pass after every commit.
+ Commit Rules
+--------------
+
+When committing:
+ * Try to ensure (either by fixing the test case or the code) that the test
+   cases pass. (Note that I don't always follow this rule, especially given that
+   I'm still fixing major bugs in the code.)
+ * Try to have one idea per patch, e.g. a commit that applies three distinctly
+   different cleanups is unwelcome - as is using three commits to fix the same
+   bug in three different places. 
