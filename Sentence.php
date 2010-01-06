@@ -122,7 +122,7 @@ abstract class Sentence extends DictionBase {
 
 					$inWhiteSpace = false;
 				}
-			} else if( ctype_upper($oc) ) {
+			} else if( ctype_alpha($oc) ) {
 				$inParagraph = false;
 				$sent .= $oc;
 				$inWhiteSpace = false;

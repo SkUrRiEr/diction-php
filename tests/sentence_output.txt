@@ -3,6 +3,7 @@
 "We're going to do things like omit ... randomly." (Length: 48) @Line: 3
 "Then we'll not actually finish" (Length: 30) @Line: 3
 "... We're also going to try to do things like start sentences like this:" (Length: 72) @Line: 3
+"yes, we're using ellipses in a vain attempt to confuse it." (Length: 58) @Line: 3
 "" (Length: 0) @Line: 4
 "What about sentence endings then?" (Length: 33) @Line: 5
 "Surely it won't be confused by this!" (Length: 36) @Line: 5
