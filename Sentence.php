@@ -93,15 +93,10 @@ abstract class Sentence extends DictionBase {
 
 					if( preg_match("/(^|\s)\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) {
 						/* omission ellipsis */
-					} else if( preg_match("/[^ ]\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) {
-						/* ending ellipsis */
-						if( $inSentence )
-							$this->processSentence($sent, $beginLine);
-
-						$sent = "";
-						$inSentence = false;
-					} else if( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) {
-						/* end of sentence */
+					} else if(
+						( preg_match("/[^ ]\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) /* ending ellipsis */
+						|| ( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && ($c == -1 || ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) /* end of sentence */
+							) {
 						if( $inSentence )
 							$this->processSentence(rtrim($sent), $beginLine);
 
