@@ -1,9 +1,9 @@
  TODO list
 ===========
 
- * Split paragraph processing out of processString() in Sentence.php
- * Deal properly with the asserts in the Style code.
- * Improve performance.
- * Rename files to reflect their purpose.
- * Port diction.
- * Dupe support for additional languages from original code.
+[ ] Split paragraph processing out of processString() in Sentence.php
+[ ] Deal properly with the asserts in the Style code.
+[ ] Improve performance.
+[ ] Rename files to reflect their purpose.
+[ ] Port diction.
+[ ] Dupe support for additional languages from original code.
