@@ -11,7 +11,7 @@ http://www.gnu.org/software/diction/diction.html
 --------------------------------
 
  * Ported to PHP
- * Split out all languages other than English.
+ * Split languages into language packs.
  * Eliminated "print sentences with certain characteristics" code from style.
  * Removed all C-isms and replaced them with equivalent (and simpler) PHP code
  * Split functionality out into classes.

@@ -15,6 +15,7 @@ DictionBase.php contains support code for language pack implementation.
 Lang.php contains base language pack code.
 
 LangEN.php contains English specific code.
+LangDE.php contains German specific code.
 
  Processing flowchart
 ----------------------
@@ -49,8 +50,8 @@ a file of the same name. These classes must extend the Lang base class and
 define all the parameters and methods that aren't specified in the Lang base
 class.
 
-Language packs will eventually be provided for German ("DE") and Dutch ("NL")
-using the text present in the original diction software.
+Language packs will eventually be provided for Dutch ("NL") using the text
+present in the original diction software.
 
  Test Cases
 ------------
@@ -76,6 +77,8 @@ compared.
 The diction test case will probably work in a similar manner to the style test
 case.
 
+Test cases will also need to be provided for German and Dutch languages.
+
  Known Differences Between the PHP Implementation and C Implementation
 -----------------------------------------------------------------------
 
@@ -87,7 +90,8 @@ In the sentence parser, the PHP implementation:
    work.)
 
 In the style implementation, the PHP implementation:
- * Counts syllables differently.
+ * Counts syllables differently. (The PHP implementation has been proven correct
+   in one occasion, but further research is needed.)
 
 Please note that this list is incomplete.
 

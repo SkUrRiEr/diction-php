@@ -2,6 +2,8 @@
 ============
 
 [X] Abbreviations are incorrectly counted as the end of sentences.
-[ ] Syllables may be counted incorrectly.
+[ ] Syllables may be counted incorrectly in English.
 [X] Ellipses are not handled correctly.
 [X] Sentences that don't start with a capital letter are completely omitted.
+[ ] Syllables may be counted incorrectly in German, particularly with the word
+    "vor-ueber"
