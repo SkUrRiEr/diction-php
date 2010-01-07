@@ -1054,15 +1054,38 @@ int main(int argc, char *argv[]) /*{{{*/
 {
 	char *filename = "input.txt";
 	FILE *fp;
+	regex_t re;
+	int err;
   newHit(&lengths);
 
 	if( argc > 1 )
 		filename = argv[1];
 
+  if ((err=regcomp(&re,"\\.list$",0)))
+  {
+    char buf[256];
+    size_t len=regerror(err,&re,buf,sizeof(buf)-1);
+    buf[len]='\0';
+    fprintf(stderr,_("internal error, compiling a regular expression failed (%s).\n"),buf);
+    exit(2);
+  }
 	if ((fp=fopen(filename,"r"))==(FILE*)0) 
       fprintf(stderr,_("style: Opening `%s' failed (%s).\n"),filename,strerror(errno));
-    else
-    {
+    else if (regexec(&re,filename,0,NULL,0)==0) {
+	    int line;
+	    size_t len;
+	    char buf[512];
+	    int x;
+	    while( !feof(fp) ) {
+		    if( (x = fscanf(fp, "%d:%zd:%[^\n]", &line, &len, buf)) < 2 )
+			    len = 0;
+
+		    if( len == 0 )
+			    buf[0] = '\0';
+
+		    process(buf, len, filename, line);
+	    }
+      } else {
       sentence("style",fp,filename,process,"en");
       fclose(fp);
     }

@@ -10,7 +10,19 @@ $filename = "input.txt";
 if( $_SERVER["argc"] > 1 )
 	$filename = $_SERVER["argv"][1];
 
-$cls->processString(file_get_contents($filename));
+if( preg_match("/\.list$/", $filename) ) {
+	$fp = fopen($filename, "r");
+
+	while( !feof($fp) ) {
+	       	fscanf($fp, "%d:%d:%[^\n]", $line, $len, $string);
+
+		if( $len == 0 )
+			$string = "";
+
+		$cls->processSentence($string, $line);
+	}
+} else
+	$cls->processString(file_get_contents($filename));
 
 echo "characters: ".$cls->characters."\n";
 echo "syllables: ".$cls->syllables."\n";

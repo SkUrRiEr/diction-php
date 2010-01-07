@@ -20,11 +20,11 @@ sentence_php.txt: sentence_input.txt ../Sentence.php ../DictionBase.php ../LangE
 style.diff: style_c.txt style_php.txt
 	$(DIFF) style_c.txt style_php.txt -u > style.diff
 
-style_c.txt: input.txt style
-	./style > style_c.txt
+style_c.txt: style_input.list style
+	./style style_input.list > style_c.txt
 
-style_php.txt: input.txt ../Style.php ../Sentence.php ../DictionBase.php ../LangEN.php ../Lang.php style.php
-	$(PHP) style.php > style_php.txt
+style_php.txt: style_input.list ../Style.php ../Sentence.php ../DictionBase.php ../LangEN.php ../Lang.php style.php
+	$(PHP) style.php style_input.list > style_php.txt
 
 style: style.c
 	$(CC) -Wall style.c -o style
