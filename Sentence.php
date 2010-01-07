@@ -94,7 +94,7 @@ abstract class Sentence extends DictionBase {
 					} else if(
 						$c == -1 /* end of file */
 						|| ( preg_match("/[^ ]\.\.\.$/", $sent) && ($c == -1 || ctype_space($c)) ) /* ending ellipsis */
-						|| ( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && (ctype_space($c) || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) /* end of sentence */
+						|| ( ($oc == "." || $oc == ":" || $oc == "!" || $oc == "?") && (ctype_space($c) || $c == ")" || $c == "\"") && !($oc == "." && $this->endingInAbbrev($sent)) ) /* end of sentence */
 							) {
 						$this->processSentence(rtrim($sent), $beginLine);
 
