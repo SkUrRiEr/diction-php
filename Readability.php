@@ -100,6 +100,9 @@ class Readability extends Style {
 	}
 
 	function smog() {
+		if( get_class($this->lang) == "LangDE" )
+			return sqrt(30.0 * ($this->bigwords / $this->sentences)) - 2.0;
+
 		return sqrt(30.0 * ($this->bigwords / $this->sentences)) + 3.0;
 	}
 }
