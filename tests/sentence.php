@@ -9,12 +9,21 @@ class Test extends Sentence {
 	}
 }
 
-$s = new Test(new LangEN());
+class Generator extends Sentence {
+	function processSentence($string, $line) {
+		echo $line.":".strlen($string).":".$string."\n";
+	}
+}
 
 $filename = "input.txt";
+$s = new Test(new LangEN());
 
 if( $_SERVER["argc"] > 1 )
-	$filename = $_SERVER["argv"][1];
+	for( $i = 1; $i < $_SERVER["argc"]; $i++ )
+		if( $_SERVER["argv"][$i] == "--generate" )
+			$s = new Generator(new LangEN());
+		else
+			$filename = $_SERVER["argv"][$i];
 
 $s->processString(file_get_contents($filename));
 

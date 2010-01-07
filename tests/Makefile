@@ -1,6 +1,6 @@
 EXECUTABLES=style
 DIFFS=sentence.diff style.diff
-OUTPUT=sentence_php.txt style_php.txt style_c.txt
+OUTPUT=sentence_php.txt style_php.txt style_c.txt style_input.list
 
 CC=gcc
 PHP=php
@@ -28,6 +28,9 @@ style_php.txt: style_input.list ../Style.php ../Sentence.php ../DictionBase.php 
 
 style: style.c
 	$(CC) -Wall style.c -o style
+
+style_input.list: style_input.txt ../Sentence.php ../DictionBase.php ../LangEN.php ../Lang.php sentence.php
+	$(PHP) sentence.php --generate style_input.txt > style_input.list
 
 clean:
 	rm -f $(OUTPUT)
