@@ -21,6 +21,8 @@ if( preg_match("/\.list$/", $filename) ) {
 
 		$cls->processSentence($string, $line);
 	}
+
+	ksort($cls->lengths);
 } else
 	$cls->processString(file_get_contents($filename));
 
