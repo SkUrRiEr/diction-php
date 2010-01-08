@@ -1074,7 +1074,7 @@ int main(int argc, char *argv[]) /*{{{*/
     else if (regexec(&re,filename,0,NULL,0)==0) {
 	    int line;
 	    size_t len;
-	    char buf[512];
+	    char buf[1024];
 	    int x;
 	    while( !feof(fp) ) {
 		    if( (x = fscanf(fp, "%d:%zd:%[^\n]", &line, &len, buf)) < 2 )
