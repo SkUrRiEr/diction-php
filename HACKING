@@ -16,6 +16,7 @@ Lang.php contains base language pack code.
 
 LangEN.php contains English specific code.
 LangDE.php contains German specific code.
+LangNL.php contains Dutch specific code.
 
  Processing flowchart
 ----------------------
@@ -49,9 +50,6 @@ class called Lang?? (where the ?? is the language code, e.g. EN for English) in
 a file of the same name. These classes must extend the Lang base class and
 define all the parameters and methods that aren't specified in the Lang base
 class.
-
-Language packs will eventually be provided for Dutch ("NL") using the text
-present in the original diction software.
 
  Test Cases
 ------------

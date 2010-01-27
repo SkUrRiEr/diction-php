@@ -7,6 +7,6 @@
 [ ] Rename files to reflect their purpose.
 [ ] Port diction.
 [X] Dupe support for German from original code.
-[ ] Dupe support for Dutch from original code.
+[X] Dupe support for Dutch from original code.
 [ ] Test German language support.
 [ ] Test Dutch language support.
