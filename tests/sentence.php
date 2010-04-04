@@ -2,6 +2,7 @@
 
 require_once("../Sentence.php");
 require_once("../LangEN.php");
+require_once("test_environment.php");
 
 class Test extends Sentence {
 	function processSentence($string, $line) {

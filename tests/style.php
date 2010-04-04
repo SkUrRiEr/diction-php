@@ -2,6 +2,7 @@
 
 require_once("../Style.php");
 require_once("../LangEN.php");
+require_once("test_environment.php");
 
 $cls = new Style(new LangEN());
 
