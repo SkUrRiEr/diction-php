@@ -11,13 +11,17 @@
 "" (Length: 0) @Line: 6
 "Even if I talk to you in quotation marks." (Length: 41) @Line: 7
 "" (Length: 0) @Line: 8
-"What's really interesting is when I start using abbreviations." (Length: 62) @Line: 9
-"Speaking of abbreviations, Dr. Matthews is especially fond of them." (Length: 67) @Line: 9
-"Not only that, but my network cable is 21 in. long." (Length: 51) @Line: 9
+"So, what Happens when I use Random Capital LeTtErS?" (Length: 51) @Line: 9
+"Does this Confuse it?" (Length: 21) @Line: 9
+"Can it underStand?" (Length: 18) @Line: 9
 "" (Length: 0) @Line: 10
-"How about sentence beginnings?" (Length: 30) @Line: 11
-"what if I miss the capital?" (Length: 27) @Line: 11
-"What if the sentence is in parentheses?" (Length: 39) @Line: 11
+"What's really interesting is when I start using abbreviations." (Length: 62) @Line: 11
+"Speaking of abbreviations, Dr. Matthews is especially fond of them." (Length: 67) @Line: 11
+"Not only that, but my network cable is 21 in. long." (Length: 51) @Line: 11
 "" (Length: 0) @Line: 12
-"This is to check that we handle the end of the ..." (Length: 50) @Line: 13
+"How about sentence beginnings?" (Length: 30) @Line: 13
+"what if I miss the capital?" (Length: 27) @Line: 13
+"What if the sentence is in parentheses?" (Length: 39) @Line: 13
 "" (Length: 0) @Line: 14
+"This is to check that we handle the end of the ..." (Length: 50) @Line: 15
+"" (Length: 0) @Line: 16
