@@ -35,7 +35,7 @@ class LangDE extends Lang {
 
 	var $conjunction_list = array("und", "oder", "aber", "sondern", "doch", "nur", "bloß", "denn", "weder", "noch", "sowie");
 
-	var $subConjunction_list = array("als", "als dass", "als daß", "als ob", "anstatt dass", "anstatt daß", "ausser dass", "ausser daß", "ausser wenn", "bevor", "bis", "da", "damit", "dass", "daß", "ehe", "falls", "indem", "je", "nachdem", "ob", "obgleich", "obschon", "obwohl", "ohne dass", "ohne daß", "seit", "so daß", "sodass", "sobald", "sofern", "solange", "so oft", "statt dass", "statt daß", "während", "weil", "wenn", "wenn auch", "wenngleich", "wie", "wie wenn", "wiewohl", "wobei", "wohingegen", "zumal" "als zu", "anstatt zu", "ausser zu", "ohne zu", "statt zu", "um zu");
+	var $subConjunction_list = array("als", "als dass", "als daß", "als ob", "anstatt dass", "anstatt daß", "ausser dass", "ausser daß", "ausser wenn", "bevor", "bis", "da", "damit", "dass", "daß", "ehe", "falls", "indem", "je", "nachdem", "ob", "obgleich", "obschon", "obwohl", "ohne dass", "ohne daß", "seit", "so daß", "sodass", "sobald", "sofern", "solange", "so oft", "statt dass", "statt daß", "während", "weil", "wenn", "wenn auch", "wenngleich", "wie", "wie wenn", "wiewohl", "wobei", "wohingegen", "zumal", "als zu", "anstatt zu", "ausser zu", "ohne zu", "statt zu", "um zu");
 
 	var $preposition_list = array("aus", "außer", "bei", "mit", "nach", "seit", "von", "zu", "bis", "durch", "für", "gegen", "ohne", "um", "an", "auf", "hinter", "in", "neben", "über", "unter", "vor", "zwischen", "anstatt", "statt", "trotz", "während", "wegen");
 
